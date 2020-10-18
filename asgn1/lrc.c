@@ -44,7 +44,7 @@ void start() {
   printf("Random seed:\n");
   scanf("%ud", &seed);
   srand(seed);
-  printf("How Many Players?:");
+  printf("how many players?:");
   scanf("%ud", &players);
 }
 
@@ -59,6 +59,7 @@ int main(void) {
 
   //win condition: be the last player with money
   while (checkplayers (pbalance, players) > 0) { 
+                                                      printf("PYRS: %d\n", players);
     if (pbalance[pos] > 0 ) { // if current pos player is in the game
       printf("%s rolls...", names[pos]); maxroll = 0;
       
@@ -70,22 +71,26 @@ int main(void) {
           pbalance[pos]--;
           pbalance[left(pos,players)]++;
           maxroll ++;
+                          printf("\n%s Has %d" names[pos], pbalance[pos]);
           break;
         case (1): //player lands on RIGHT
           printf(" gives $1 to %s", names[right(pos, players)]);
           pbalance[pos]--;
           pbalance[right(pos,players)]++;
           maxroll++;
+                          printf("\n%s Has %d" names[pos], pbalance[pos]);
           break;
         case (2): // player lands on CENTER
           printf(" puts $1 in the pot");
           pbalance[pos]--;
           pot++;
           maxroll++;
+                          printf("\n%s Has %d" names[pos], pbalance[pos]);
           break;
         case (3): // player lands on PASS
           printf(" gets a pass");
           maxroll++;
+                          printf("\n%s Has %d" names[pos], pbalance[pos]);
           break;
         default: printf("Bad case!");
           break;
