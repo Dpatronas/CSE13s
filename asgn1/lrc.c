@@ -23,10 +23,13 @@ int roll() { return rand() % 6; }
 int checkplayers(int *pbalance, int numplayers) {
   players = 0; // reset player count
   for (int i = 0; i < numplayers; i++) {
-    printf("balance: %d", *pbalance);
     if (*pbalance > 0) {
+<<<<<<< HEAD
       players++; // count players with money
       printf("checking players: %d\n", players);
+=======
+      players++; // count players with money
+>>>>>>> 022ba57f5a5f4dd2f5f84a16da7a6d35f494eba2
     }
     pbalance++;
   }
@@ -51,10 +54,15 @@ int main(void) {
     pbalance[i] = 3;
   }
 
+<<<<<<< HEAD
   // win condition: be the last player with money
   while (checkplayers(pbalance, players) > 0) {
     printf("PYRS: %d\n", players);
     printf("\n%s Has $%d", names[pos], pbalance[pos]);
+=======
+  // win condition: be the last player with money
+  while (checkplayers(pbalance, players) > 1) {
+>>>>>>> 022ba57f5a5f4dd2f5f84a16da7a6d35f494eba2
 
     if (pbalance[pos] > 0) { // if current pos player is in the game
       printf("%s rolls...", names[pos]);
@@ -66,28 +74,42 @@ int main(void) {
         case (0): // player lands on LEFT
           printf(" gives $1 to %s", names[left(pos, players)]);
           pbalance[pos]--;
+<<<<<<< HEAD
           pbalance[left(pos, players)]++;
           maxroll++;
           printf("\n%s Has $%d", names[pos], pbalance[pos]);
+=======
+          pbalance[left(pos, players)]++;
+          maxroll++;
+>>>>>>> 022ba57f5a5f4dd2f5f84a16da7a6d35f494eba2
           break;
         case (1): // player lands on RIGHT
           printf(" gives $1 to %s", names[right(pos, players)]);
           pbalance[pos]--;
           pbalance[right(pos, players)]++;
           maxroll++;
+<<<<<<< HEAD
           printf("\n%s Has $%d", names[pos], pbalance[pos]);
+=======
+>>>>>>> 022ba57f5a5f4dd2f5f84a16da7a6d35f494eba2
           break;
         case (2): // player lands on CENTER
           printf(" puts $1 in the pot");
           pbalance[pos]--;
           pot++;
           maxroll++;
+<<<<<<< HEAD
           printf("\n%s Has $%d", names[pos], pbalance[pos]);
+=======
+>>>>>>> 022ba57f5a5f4dd2f5f84a16da7a6d35f494eba2
           break;
         case (3): // player lands on PASS
           printf(" gets a pass");
           maxroll++;
+<<<<<<< HEAD
           printf("\n%s Has $%d", names[pos], pbalance[pos]);
+=======
+>>>>>>> 022ba57f5a5f4dd2f5f84a16da7a6d35f494eba2
           break;
         default:
           printf("Bad case!");
