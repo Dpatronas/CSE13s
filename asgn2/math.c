@@ -5,7 +5,9 @@
 #define OPTIONS "sctea :"
 
 # define EPSILON 0.0000000001
-# define M_PI           3.14159265358979323846  /* pi */
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
 //Calculates: base^power
 double Pow (double base, int power) {
   double total = 1;
