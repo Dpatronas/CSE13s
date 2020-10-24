@@ -5,9 +5,9 @@ README.md
 This program tests various homemade math function approximations with the folling parameters:
 
 	functions		ranges			steps			Approx / formula	Order/threshold		Helper Fxns
-	sin(x)		 [-2pi, 2pi]	w/ steps of pi/16		Horners				14th				Power
-	cos(x)		 [-2pi, 2pi]	w/ steps of pi/16		Horners				14th				Power
-	tan(x)		 [-pi/3, pi/3]	w/ steps of pi/16	 trig identity			14th			sin(x)/cos(x)
+	sin(x)		 [-2pi, 2pi)	w/ steps of pi/16		Horners				14th				Power
+	cos(x)		 [-2pi, 2pi)	w/ steps of pi/16		Horners				14th				Power
+	tan(x)		 [-pi/3, pi/3)	w/ steps of pi/16	 trig identity			14th			sin(x)/cos(x)
 	e^x			 [0,9] 			w/ steps of 0.1		Maclaurin series		10^-9		Power  / Factorial
 
 The functions above are tested against <math.h> math function standard libraries provided in C

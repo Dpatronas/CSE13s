@@ -99,7 +99,7 @@ void sin_test() {
   printf("%s \t%s \t%s \t%s \n", "x     ", " Sin    ", " Library", " Difference");
   printf("%s \t%s \t%s \t%s \n","-"," ---","         -------"," ----------");
 
-  for (float i = -2 * M_PI; i < (33*M_PI/16); i+= M_PI/16 ) {
+  for (float i = -2 * M_PI; i <= (2*M_PI); i+= M_PI/16 ) { //[-2pi,2pi)
     double diff = fabs(Sin(i)-sin(i));
     printf("% 6.4lf\t% 10.8lf\t% 10.8lf\t% 12.10lf\n", i, Sin(i), sin(i), diff ) ;
   }
@@ -111,7 +111,7 @@ void cos_test() {
   printf("%s \t%s \t%s \t%s \n", "x     ", " Cos    ", " Library", " Difference");
   printf("%s \t%s \t%s \t%s \n","-"," ---","         -------"," ----------");
 
-  for (float i = -2*M_PI; i <= (33*M_PI/16); i+= M_PI/16 ) {
+  for (float i = -2 * M_PI; i <= (2*M_PI); i+= M_PI/16 ) {  //[-2pi,2pi)
     double diff = fabs(Cos(i)-cos(i));
     printf("% 6.4lf\t% 10.8lf\t% 10.8lf\t% 12.10lf\n", i, Cos(i), cos(i), diff ) ;
   }
