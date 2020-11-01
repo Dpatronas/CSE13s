@@ -1,18 +1,18 @@
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -Wpedantic
 
-all	:     tower
+all	:	tower
 
-tower	:        tower.o
+tower	:	tower.o
 
-    	$(CC) -o tower tower.o stack.o
+	$(CC) -o tower tower.o stack.o
 
-tower.o	:         tower.c
+tower.o	:	tower.c
 
 	$(CC) -c tower.c stack.c
 
 clean	:
 	rm -f tower tower.o stack stack.o
 
-infer	: 
-	make clean; infer -capture  -- make; infer -analyze  -- make
+infer	:
+	make clean; infer -capture -- make; infer -analyze -- make
