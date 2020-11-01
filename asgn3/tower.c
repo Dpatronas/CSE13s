@@ -282,12 +282,18 @@ int main( int argc, char **argv)
 
   //do the recursive implementation of towers game
   if (recursion == 1) {
+    printf("================================");
+    printf("----------   STACKS   ----------");
+    printf("================================");
     recursive_tower(disks, 'A', 'B', 'C');
   }
   //do that stack implementation of towers game
   if ( stackk == 1 ) {
+    printf("================================");
+    printf("--------   RECURSION   ---------");
+    printf("================================");
     stack_tower(disks);
   }
 
     return 0;
-} 
+}
