@@ -242,6 +242,7 @@ void stack_tower(int disks) {
   s_delete(extra);
   //print the moves
   printf("\n\nNumber of moves: %d", num_moves);
+  printf("\n");
 }
 
 int main( int argc, char **argv) 
@@ -250,6 +251,7 @@ int main( int argc, char **argv)
   bool recursion = false;
   bool stackk = false;
   char *input_disks =  NULL;
+  int moves = Pow(2, disks) -1;
   while ((c = getopt(argc, argv, OPTIONS)) != -1) {
     switch (c) {
       //recursive
@@ -282,16 +284,18 @@ int main( int argc, char **argv)
 
   //do the recursive implementation of towers game
   if (recursion == 1) {
-    printf("================================");
-    printf("----------   STACKS   ----------");
-    printf("================================");
+    printf("=================================");
+    printf("\n--------   RECURSION   ----------");
+    printf("\n=================================");
     recursive_tower(disks, 'A', 'B', 'C');
+    printf("\n\nNumber of moves: %d", (moves));
   }
   //do that stack implementation of towers game
   if ( stackk == 1 ) {
     printf("================================");
-    printf("--------   RECURSION   ---------");
-    printf("================================");
+    printf("\n----------   STACKS   ----------");
+    printf("\n================================");
+
     stack_tower(disks);
   }
 
