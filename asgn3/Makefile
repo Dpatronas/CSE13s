@@ -12,7 +12,7 @@ tower.o	:	tower.c
 	$(CC) -c tower.c stack.c
 
 clean	:
-	rm -f tower tower.o stack stack.o
+	rm -f tower tower.o stack.o
 
 infer	:
 	make clean; infer -capture -- make; infer -analyze -- make

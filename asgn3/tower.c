@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "stack.h"
 
-#define OPTIONS "srn :"
+#define OPTIONS "srn:"
 
 //default the number of disks to 5
 int static disks =  5;
@@ -251,7 +251,6 @@ int main( int argc, char **argv)
   bool recursion = false;
   bool stackk = false;
   char *input_disks =  NULL;
-  int moves = Pow(2, disks) -1;
   while ((c = getopt(argc, argv, OPTIONS)) != -1) {
     switch (c) {
       //recursive
@@ -288,6 +287,7 @@ int main( int argc, char **argv)
     printf("\n--------   RECURSION   ---------");
     printf("\n================================");
     recursive_tower(disks, 'A', 'B', 'C');
+    int moves = Pow(2, disks) -1;
     printf("\n\nNumber of moves: %d", (moves));
     printf("\n");
   }
