@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "stack.h"
 
-#define OPTIONS "nsr :"
+#define OPTIONS "srn :"
 
 //default the number of disks to 5
 int static disks =  5;
@@ -284,11 +284,12 @@ int main( int argc, char **argv)
 
   //do the recursive implementation of towers game
   if (recursion == 1) {
-    printf("=================================");
-    printf("\n--------   RECURSION   ----------");
-    printf("\n=================================");
+    printf("================================");
+    printf("\n--------   RECURSION   ---------");
+    printf("\n================================");
     recursive_tower(disks, 'A', 'B', 'C');
     printf("\n\nNumber of moves: %d", (moves));
+    printf("\n");
   }
   //do that stack implementation of towers game
   if ( stackk == 1 ) {
