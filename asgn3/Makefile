@@ -15,4 +15,4 @@ clean	:
 	rm -f tower tower.o stack.o
 
 infer	:
-	make clean; infer -capture -- make; infer -analyze -- make
+	make clean; infer-capture -- make; infer-analyze -- make
