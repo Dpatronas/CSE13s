@@ -300,5 +300,5 @@ int main( int argc, char **argv)
     stack_tower(disks);
   }
 
-    exit(0);
+    return 0;
 }
