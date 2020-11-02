@@ -21,7 +21,7 @@ Stack *stack(int size, char character) {
   s->items = (int *)malloc(sizeof(int) * size);
   // if items failed to create
   if (!s->items) {
-    return 0;
+    return exit(0);
   }
   return s;
 }
@@ -74,6 +74,7 @@ bool s_empty(Stack *s) {
 }
 
 int s_peek(Stack *s) {
+  // can error check for empty possibly
   if (!s) {
     return -1;
   } else { // return items[element top - 1 ] because top starts at 1 and

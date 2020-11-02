@@ -21,7 +21,7 @@ In the bash terminal make and create executable :
 		•CFLAGS=-Wall -Wextra -Werror -Wpedantic
 		•CC = clang must be specified
 		•make clean removes all files that are compiler generated.
-		•make infer was not able to work for me. May depend on command line setup. Wasn't able to troubleshoot
+		•make infer creates the infer-out and running infer reports no issues found but there is a backtrace error. 
 		•make should build your program, as should make all
 
 Program supports the following command-line options 
@@ -29,3 +29,13 @@ Program supports the following command-line options
 		$./tower -n x	//sets the number of disks to x (OTHERWISE x = 5)
 		$./tower -s		//compile the stack implementation with x disks
 		$./tower -r		//compile the recursive implementation with x disks
+
+Memory (no leaks):
+	the stack implementation uses heap allocated memory for:
+		-creation of defined stack
+		-int array variable within struct stack
+
+	Valgrind reports a total of 252 Bytes to be allocated
+	while running the executable tower.
+	At runtime all allocated Bytes are freed
+
