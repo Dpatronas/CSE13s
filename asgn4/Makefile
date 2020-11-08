@@ -5,11 +5,11 @@ all			:	sequence
 
 sequence	:	sequence.o
 
-	$(CC) -o sequence sequence.o bv.o sieve.o
+	$(CC) -o sequence sequence.o bv.o sieve.o -lm
 
 sequence.o	:	sequence.c
 
-	$(CC) -c sequence.c bv.c sieve.c
+	$(CC) -c sequence.c bv.c sieve.c -lm
 
 clean	:
 	rm -f sequence sequence.o bv.o sieve.o
