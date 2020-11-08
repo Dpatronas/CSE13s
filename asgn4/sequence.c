@@ -125,7 +125,7 @@ void test_pali( int length, BitVector *v) {
 
       //check if its a palindrome 
       if ( isPalindrome(str_bin) ) {
-        printf("%d = ");
+        printf("%d = ", i);
         printstring(str_bin);
       }
     }
@@ -144,7 +144,7 @@ void test_pali( int length, BitVector *v) {
 
       //check if its a palindrome 
       if ( isPalindrome(str_nine) ) {
-        printf("%d = ");
+        printf("%d = ", i);
         printstring(str_nine);
       }
     }
@@ -163,7 +163,7 @@ void test_pali( int length, BitVector *v) {
 
       //check if its a palindrome 
       if ( isPalindrome(str_dec) ) {
-        printf("%d = ");
+        printf("%d = ", i);
         printstring(str_dec);
       }
     }
@@ -182,6 +182,7 @@ void test_pali( int length, BitVector *v) {
 
       //check if its a palindrome 
       if ( isPalindrome(str_Patr) ) {
+        printf("%d = ", i);
         printstring(str_Patr);
       }
     }
