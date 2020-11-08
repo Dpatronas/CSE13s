@@ -103,12 +103,6 @@ int main(int argc, char **argv) {
   //default length
   int length = 1000;  
 
-  //create the bitVector and vector array on heap
-  BitVector *v = bv_create(length);
-
-  //this will find the primes
-  sieve(v);
-
   //optargs
   bool specPrimes = false;
   bool palnPrimes = false;
@@ -140,6 +134,12 @@ int main(int argc, char **argv) {
       }
     }
   }
+  
+  //create the bitVector and vector array on heap
+  BitVector *v = bv_create(length);
+
+  //this will find the primes
+  sieve(v);
 
   // error check the getopt
   if (argc == 1) {
