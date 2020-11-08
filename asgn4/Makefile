@@ -9,7 +9,7 @@ sequence	:	sequence.o
 
 sequence.o	:	sequence.c
 
-	$(CC) -c sequence.c bv.c sieve.c -lm
+	$(CC) -c sequence.c bv.c sieve.c
 
 clean	:
 	rm -f sequence sequence.o bv.o sieve.o

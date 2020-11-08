@@ -26,7 +26,7 @@ int mersenne( int power ) {
   return (Pow(2,power)-1);
 }
 
-//function to find the fibs from [2,1000]
+//function to find the fibs
 int fibonacci( int index, int element1, int element2) {
   if (index == 0) {         //fib[index==0] = 2;
     return 2;
@@ -46,18 +46,17 @@ int fibonacci( int index, int element1, int element2) {
 //Find the special primes
 void primes( int length, BitVector *v ) {
 
-  // Since there is only 15 fibonacci numbers from [2-2000+] will use array to store them
   // the first 3 fibonacci numbers are excluded (0,1,1) since primes start at 2
   //declare and initalize values to 0
-  int fib[16] = {0};
+  int fib[20] = {0};
 
   //populate the fib array
-  for ( int i = 0; i < 15; i++) {
+  for ( int i = 0; i < 20; i++) {
     fib[i] = fibonacci(i, fib[i-1], fib[i-2]);
   }
 
   // Similar line of logic for lucas primes (excluding the initial 1)
-  int luc[16] = {2,3,4,7,11,18,29,47,76,123,199,322,521,843,1364,2207};
+  int luc[20] = {2,3,4,7,11,18,29,47,76,123,199,322,521,843,1364,2207,3571,5778,9349,15127};
 
   //the start of our loop for prime numbers within Bitvector
   int i =2;
@@ -66,26 +65,25 @@ void primes( int length, BitVector *v ) {
     if (bv_get_bit(v,i) == 1 ) {
       printf("%d: prime", i);
       
-      //the mersenne number is between [2,9]
       //cannot be <= 1 since 2^1=1 
-      //cannot be >=10 since 2^10 = 1024
-      for (int m = 0; m < 10; m++ ) {
+      //extra included for variable length tests
+      for (int m = 0; m < 15; m++ ) {
         if (mersenne(m) == i ) {
           printf(", mersenne");
           m++;
         }
       }
 
-      //we have only 14 numbers to scan based on the lucas array
-      for ( int l = 0; l < 15; l++ ) {
+      //scan 20 lucas numbers
+      for ( int l = 0; l < 20; l++ ) {
         if ( luc[l] == i) {
           printf(", lucas");
           l++;
         }
       }
 
-      //we have only 14 numbers to scan based on the fib array
-      for ( int f = 0; f < 15; f++ ) {
+      //scan 20 fibonacci numbers
+      for ( int f = 0; f < 20; f++ ) {
         if ( fib[f] == i) {
           printf(", fibonacci");
           f++;
