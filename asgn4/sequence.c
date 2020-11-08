@@ -41,6 +41,159 @@ int fibonacci( int index, int element1, int element2) {
   }
 }
 
+//function to convert int to character and perform
+//base change on the decimal # input to desired base input
+//fills the string from left to right
+char* buildstring(char str[], int from_decimal, int to_base) 
+{ 
+    int index = 0;  // Initialize index of result 
+  
+    // dividing number it by base and taking remainder 
+    while (from_decimal > 0) 
+    { 
+      //store the decimal MOD base
+      int temp = from_decimal % to_base;
+
+      //check if this char is a digit char number
+      if (temp >= 0 && temp <= 9) {
+        //fill string index with value
+        str[index++] = (char)(temp + '0'); 
+      }
+      //otherwise its hexa
+      else {
+        //fill string index with letter
+        str[index++] = (char)(temp - 10 + 'A'); 
+      }
+      //divide the decimal by the new base and continue
+      from_decimal /= to_base; 
+    } 
+    //add ghe null terminating char
+    str[index] = '\0'; 
+  
+    return str; 
+}
+
+//function to determine if character string is pally
+bool isPalindrome(char str[]) {
+  //assume true
+  bool res = 1;
+  //the end of the string excluding null term
+  int end = strlen(str) -1;
+
+  //test half the string comparing values on each end
+  for (int start = 0; start <= (strlen(str)/2); start++) {
+
+    //if start != end element
+    if (str[start] != str[(end)]) {
+      //if no match, set to false
+      res = 0;
+    }
+    //decrement the end element
+    end--;
+  }
+  //return the bool
+  return res;
+}
+
+//print the character string
+void printstring( char str[]) {
+  int sleng = strlen(str);
+  printf("String: ");
+  for (int i = 0; i < sleng; i++) {
+    printf("%c", str[i]);
+  }
+  printf("\n");
+}
+
+void test_pali( int length, BitVector *v) {
+  //10 cstrings allocated for base 2, base 9, base 10, and base 10+16 = 26=(P)
+  char *str_bin = (char *)malloc(10 * sizeof(char));
+  char *str_nine = (char *)malloc(10 * sizeof(char));
+  char *str_dec = (char *)malloc(10 * sizeof(char));
+  char *str_Patr = (char *)malloc(10 * sizeof(char));
+
+  //Primes start at 2
+  int i = 2;
+
+  printf("Base  2\n---- --\n");
+  //binary palindrome test
+  while ( i < length ) {
+    if (bv_get_bit(v,i) == 1) {
+
+      //make the char string using binary
+      buildstring(str_bin, i, 2);
+
+      //check if its a palindrome 
+      if ( isPalindrome(str_bin) ) {
+        printstring(str_bin);
+      }
+    }
+    i++; 
+  }
+
+  printf("\nBase  9\n---- --\n");
+  //reset the index
+  i = 2;
+  //base nine palindrome test
+  while ( i < length ) {
+    if (bv_get_bit(v,i) == 1) {
+
+      //make the char string using base nine
+      buildstring(str_nine, i, 9);
+
+      //check if its a palindrome 
+      if ( isPalindrome(str_nine) ) {
+        printstring(str_nine);
+      }
+    }
+    i++; 
+  }
+
+  //reset the index
+  i = 2;
+  printf("\nBase 10\n---- --\n");
+  //base decimal palindrome test
+  while ( i < length ) {
+    if (bv_get_bit(v,i) == 1) {
+
+      //make the char string using decimal
+      buildstring(str_dec, i, 10);
+
+      //check if its a palindrome 
+      if ( isPalindrome(str_dec) ) {
+        printstring(str_dec);
+      }
+    }
+    i++; 
+  }
+
+  //reset the index
+  i = 2;
+  printf("\nBase 26\n---- --\n");
+  //Last name base palindrome test ((P)16+10=26)
+  while ( i < length ) {
+    if (bv_get_bit(v,i) == 1) {
+
+      //make the string for last name base
+      buildstring(str_Patr, i, 26);
+
+      //check if its a palindrome 
+      if ( isPalindrome(str_Patr) ) {
+        printstring(str_Patr);
+      }
+    }
+    i++; 
+  }
+  
+  //clean up the heap
+  free(str_bin);
+  free(str_nine);
+  free(str_dec);
+  free(str_Patr);
+  bv_delete(v);
+
+}
+
 //Create the Bitvector
 //Sieve the BitVector for primes
 //Find the special primes
@@ -93,6 +246,10 @@ void primes( int length, BitVector *v ) {
     }
     i++; //increment the index
   }
+
+  //clean up the heap
+  bv_delete(v);
+
 }
 
 int main(int argc, char **argv) {
@@ -133,11 +290,11 @@ int main(int argc, char **argv) {
     }
   }
   
-  //create the bitVector and vector array on heap
+ //create the bitVector and vector array on heap
   BitVector *v = bv_create(length);
 
   //this will find the primes
-  sieve(v);
+  sieve(v); 
 
   // error check the getopt
   if (argc == 1) {
@@ -148,6 +305,11 @@ int main(int argc, char **argv) {
   if (specPrimes) {
     //start the printing of primes and special primes
     primes(length, v);
+  }
+
+  if (palnPrimes) {
+    //print the palindrome of different based primes
+    test_pali(length, v);
   }
 
   return 0;
