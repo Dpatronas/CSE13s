@@ -36,3 +36,12 @@ Program supports the following command-line options
 	$./sequence -s		//compile the sequence for special primes with x disks
 	$./sequence -p		//compile the sequence for palindromes in different bases 
 						// Bases:(2) (9) (10) (26)
+
+Valgrind Report:
+
+	running this program with either:
+		./sequence -s 		(total heap usage is 2 allocs, 2 frees, 141 allocated Bytes)
+		./sequence -p 		(total heap usage is 6 allocs, 6 frees, 181 allocated Bytes)
+
+	Report 0 memory leaks. "All Heaps freed no possible memory leaks" for both implementations
+
