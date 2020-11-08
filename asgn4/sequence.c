@@ -49,7 +49,7 @@ void primes( int length, BitVector *v ) {
   // Since there is only 15 fibonacci numbers from [2-2000+] will use array to store them
   // the first 3 fibonacci numbers are excluded (0,1,1) since primes start at 2
   //declare and initalize values to 0
-  int fib[15] = {0};
+  int fib[16] = {0};
 
   //populate the fib array
   for ( int i = 0; i < 15; i++) {
@@ -57,7 +57,7 @@ void primes( int length, BitVector *v ) {
   }
 
   // Similar line of logic for lucas primes (excluding the initial 1)
-  int luc[15] = {2,3,4,7,11,18,29,47,76,123,199,322,521,843,1364};
+  int luc[16] = {2,3,4,7,11,18,29,47,76,123,199,322,521,843,1364,2207};
 
   //the start of our loop for prime numbers within Bitvector
   int i =2;
