@@ -8,6 +8,13 @@ This program is designed to print primes, and special primes:
 	2) Lucas Prime
 	3) Fibonacci Prime
 
+This program will also print palindromic primes in the following bases:
+
+	1) Base 2
+	2) Base 9
+	3) Base 10
+	4) Base 26
+
 User may input the length of numbers to test for primality (optional)
 
 How to make and compile program and header files

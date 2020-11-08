@@ -5,7 +5,7 @@ all			:	sequence
 
 sequence	:	sequence.o
 
-	$(CC) -o sequence sequence.o bv.o sieve.o
+	$(CC) -o sequence sequence.o bv.o sieve.o -lm
 
 sequence.o	:	sequence.c
 
