@@ -10,7 +10,7 @@
 //bitmask : 1073741823
 #define BITMASK 0x3FFFFFFF
 
-//function to reinitialize the array for reuse
+//function to reinitialize the array of n length for reuse
 void reset_array(uint32_t arr[], uint32_t length) {
 	for (uint32_t i = 0; i < length; i++) {
 		//initialize elements to 0
@@ -30,8 +30,10 @@ void fill_array(uint32_t arr[], uint32_t length, uint32_t seed) {
 int main ( int argc, char ** argv) {
 	//variables and initializations
 	int c = 0;
-	uint32_t length = 100;	//default length of array
-	uint32_t seed = 8222022;	//default seed
+	//these are the defaults for optional getopt defined inputs
+	uint32_t print_len = 100;
+	uint32_t length = 100;
+	uint32_t seed = 8222022;
 
 	//options to be set by switch case getopt
 	bool all, bubble, shell, quick, ibinary;
@@ -40,48 +42,55 @@ int main ( int argc, char ** argv) {
 	//optarg user inputs
 	char *get_len = NULL;
 	char *get_seed = NULL;
+	char *get_p_len = NULL;
 
 	//getopt while
 	while ( (c = getopt(argc, argv, OPTIONS)) != -1) {
 		switch (c) {
-			//ALL the sorts
+			//ALL the sorts = T
 			case 'A':
 				all = bubble = shell = quick = ibinary = 1;
 				break;
 
-			//bubble sort
+			//bubble sort = T
 			case 'b':
 				bubble = 1;
 				break;
 
-			//shell sort
+			//shell sort = T
 			case 's':
 				shell = 1;
 				break;
 
-			//quick sort
+			//quick sort = T
 			case 'q':
 				quick = 1;
 				break;
 
-			//binary insert search
+			//binary insert search = T
 			case 'i':
 				ibinary = 1;
 				break;
 
-			//print the first n elements of the array (get n)
+			//set the print length which will print the first n elements of the array
 			case 'p':
+				get_p_len = optarg;
+				print_len = atoi (get_p_len);
+				break;
+
+			//get seed form user and set seed
+			case 'r':
+				get_seed = optarg;
+				seed = atoi(get_seed);
+				break;
+
+			//get the length of elements for the array
+			case 'n':
 				get_len = optarg;
 				//make sure theres at least 1 element in the array
 				if ( atoi(get_len) > 0) {
 					length = atoi (get_len);
 				}
-				break;
-
-			//set seed
-			case 'r':
-				get_seed = optarg;
-				seed = atoi(get_seed);
 				break;
 		}
 	}
@@ -103,7 +112,7 @@ int main ( int argc, char ** argv) {
         if ( all ) {
             printf("\n");
         }
-        binary_insertion(arr, length);
+        binary_insertion(arr, length, print_len);
         //reset and refill with same rand seed if all was triggered
         reset_array(arr, length);
         fill_array(arr, length, seed);
@@ -114,8 +123,7 @@ int main ( int argc, char ** argv) {
         if ( all ) {
             printf("\n");
         }
-        quick_sort(arr, 0, length-1);
-        printq( arr, length);
+        quick_sort(arr, 0, length-1, length, print_len);
         //reset and refill with same rand seed if all was triggered
         reset_array(arr, length);
         fill_array(arr, length, seed);
@@ -125,7 +133,7 @@ int main ( int argc, char ** argv) {
         if ( all ) {
             printf("\n");
         }
-		shell_sort(arr, length);
+		shell_sort(arr, length, print_len);
 		//reset and refill with same rand seed if all was triggered
 		reset_array(arr, length);
 		fill_array(arr, length, seed);
@@ -135,7 +143,7 @@ int main ( int argc, char ** argv) {
         if ( all ) {
             printf("\n");
         }
-        bubble_sort(arr, length);
+        bubble_sort(arr, length, print_len);
         //reset and refill with same rand seed if all was triggered
         reset_array(arr, length);
         fill_array(arr, length, seed);

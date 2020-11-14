@@ -1,6 +1,6 @@
 #include "bubble.h"
 
-void printb(uint32_t arr[], uint32_t length) {
+void printb(uint32_t arr[], uint32_t length, uint32_t print_len) {
 	//print the elements, moves, and comps
 	printf("Bubble Sort\n");
 	printf("%d elements, ",length);
@@ -8,7 +8,7 @@ void printb(uint32_t arr[], uint32_t length) {
 	printf("%lu compares\n", b_comps);
 
 	//iterate through array elements -1
-  for (uint32_t i = 0; i < length; i++) {
+  for (uint32_t i = 0; i < print_len; i++) {
     //print the elements
     printf("%13" PRIu32, arr[i]);
     //print in columns of 7
@@ -42,7 +42,7 @@ bool compb(uint32_t arr[], uint32_t i) {
 	return 0;
 }
 
-void bubble_sort(uint32_t arr[], uint32_t length) {
+void bubble_sort(uint32_t arr[], uint32_t length, uint32_t print_len) {
 	uint32_t j = 0;
 	//go through entire length to start
 	for (uint32_t i = 0; i < length-1; i++ ) {
@@ -60,5 +60,5 @@ void bubble_sort(uint32_t arr[], uint32_t length) {
 		}
 	}
 	//print the array when it is finished
-	printb(arr, length);
+	printb(arr, length, print_len);
 }

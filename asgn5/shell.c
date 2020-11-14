@@ -1,14 +1,15 @@
 #include "shell.h"
 
-void prints(uint32_t arr[], uint32_t length) {
+void prints(uint32_t arr[], uint32_t length, uint32_t print_len) {
   //print the elements, moves, and comps
   printf("Shell Sort\n");
+  //print the length that was sorted
   printf("%d elements, ",length);
   printf("%lu moves, ", s_moves);
   printf("%lu compares\n", s_comps);
 
-  //iterate through array elements -1
-  for (uint32_t i = 0; i < length; i++) {
+  //iterate through array elements (for print length)
+  for (uint32_t i = 0; i < print_len; i++) {
     //print the elements
     printf("%13" PRIu32, arr[i]);
     //print in columns of 7
@@ -41,7 +42,7 @@ bool comps(uint32_t arr[], int32_t j, int32_t gap) {
 //This implementation appears in: 
 //page 62 of "the C Programming Language"
 //by Brian W. Kernighan and Dennis M. Ritchie
-void shell_sort(uint32_t arr[], uint32_t length) {
+void shell_sort(uint32_t arr[], uint32_t length, uint32_t print_len) {
 
   int32_t gap = 0;		//gap to create "subarrays"
 
@@ -56,5 +57,6 @@ void shell_sort(uint32_t arr[], uint32_t length) {
       }
     }
   }
-  prints( arr, length);
+  //print the array when it is finished
+  prints(arr, length, print_len);
 }

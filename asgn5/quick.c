@@ -1,6 +1,6 @@
 #include "quick.h"
 
-void printq(uint32_t arr[], uint32_t length) {
+void printq(uint32_t arr[], uint32_t length, uint32_t print_len) {
   //print the elements, moves, and comps
   printf("Quick Sort\n");
   printf("%d elements, ",length);
@@ -8,7 +8,7 @@ void printq(uint32_t arr[], uint32_t length) {
   printf("%lu compares\n", q_comps);
 
   //iterate through array elements -1
-  for (uint32_t i = 0; i < length; i++) {
+  for (uint32_t i = 0; i < print_len; i++) {
     //print the elements
     printf("%13" PRIu32, arr[i]);
     //print in columns of 7
@@ -74,14 +74,18 @@ int partition(uint32_t arr[], int32_t left, int32_t right) {
   return hi;
 }
 
-void quick_sort(uint32_t arr[], int32_t left, int32_t right) {
+void quick_sort(uint32_t arr[], int32_t left, int32_t right, uint32_t length, uint32_t print_len) {
   // left < right no comps here
 	if ( left < right ) {
     //set index = hi
     uint32_t index = partition(arr, left, right);
     //sort based on new right = index -1
-    quick_sort(arr, left, index - 1);
+    quick_sort(arr, left, index - 1, length, print_len);
     //sort based on new left = hi+1
-    quick_sort(arr, index + 1, right);
+    quick_sort(arr, index + 1, right, length, print_len);
+  }
+  else {
+  //print the array when it is finished
+  printq(arr, length, print_len);
   }
 }

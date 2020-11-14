@@ -11,7 +11,7 @@ static uint64_t q_comps = 0;
 
 //print the array in columns of 7
 //length = elements in arr[]
-void printq(uint32_t arr[], uint32_t length);
+void printq(uint32_t arr[], uint32_t length, uint32_t print_len);
 
 //function to swap two elements of array
 //arr[low] <-> arr[hi]
@@ -26,6 +26,6 @@ bool compq(uint32_t low, uint32_t hi);
 int partition(uint32_t arr[], int32_t left, int32_t right);
 
 //function to perform quick sort on an array
-void quick_sort(uint32_t arr[], int32_t left, int32_t right);
+void quick_sort(uint32_t arr[], int32_t left, int32_t right, uint32_t length, uint32_t print_len);
 
 #endif

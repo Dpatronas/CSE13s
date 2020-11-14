@@ -11,7 +11,7 @@ static uint64_t s_comps = 0;
 
 //print the array in columns of 7
 //length = elements in arr[]
-void prints(uint32_t arr[], uint32_t length);
+void prints(uint32_t arr[], uint32_t length, uint32_t print_len);
 
 //function to swap two elements of array
 //j and gap are two variables indeces to be swapped
@@ -29,6 +29,6 @@ bool comps(uint32_t arr[], int32_t j, int32_t gap);
 //by Brian W. Kernighan and Dennis M. Ritchie
 //function to do the shell sort of array (arr[])
 //length = elements in arr[]
-void shell_sort(uint32_t arr[], uint32_t length);
+void shell_sort(uint32_t arr[], uint32_t length, uint32_t print_len);
 
 #endif

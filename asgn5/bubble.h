@@ -11,7 +11,7 @@ static uint64_t b_comps = 0;
 
 //print the array in columns of 7
 //length = elements in arr[]
-void printb(uint32_t arr[], uint32_t length);
+void printb(uint32_t arr[], uint32_t length, uint32_t print_len);
 
 //function to swap two elements of array (arr[]) indexes (i)
 //swaps with the index to the left
@@ -24,6 +24,6 @@ void swapb(uint32_t arr[], uint32_t i);
 bool compb(uint32_t arr[], uint32_t i);
 
 //function to perform the bubble sort
-void bubble_sort(uint32_t arr[], uint32_t length);
+void bubble_sort(uint32_t arr[], uint32_t length, uint32_t print_len);
 
 #endif

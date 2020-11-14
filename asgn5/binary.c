@@ -1,6 +1,6 @@
 #include "binary.h"
 
-void printi(uint32_t arr[], uint32_t length) {
+void printi(uint32_t arr[], uint32_t length, uint32_t print_len) {
   //print the elements, moves, and comps
 	printf("Binary Insertion Sort\n");
 	printf("%d elements, ",length);
@@ -8,7 +8,7 @@ void printi(uint32_t arr[], uint32_t length) {
 	printf("%lu compares\n", i_comps);
 
   //iterate through array elements -1
-  for (uint32_t i = 0; i < length; i++) {
+  for (uint32_t i = 0; i < print_len; i++) {
     //print the elements
     printf("%13" PRIu32, arr[i]);
     //print in columns of 7
@@ -39,7 +39,7 @@ bool compi( uint32_t val1, uint32_t val2) {
   return 0;
 }
 
-void binary_insertion(uint32_t arr[], uint32_t length) {
+void binary_insertion(uint32_t arr[], uint32_t length, uint32_t print_len) {
 
   for (uint32_t i = 1; i < length; i++) {
     uint32_t value = arr[i];
@@ -60,5 +60,6 @@ void binary_insertion(uint32_t arr[], uint32_t length) {
       swapi(arr, j);
     }
   }
-  printi(arr, length);
+  //print the array when it is finished
+  printi(arr, length, print_len);
 }

@@ -11,7 +11,7 @@ static uint64_t i_comps = 0;
 
 //print the array in columns of 7
 //length = elements in arr[]
-void printi(uint32_t arr[], uint32_t length);
+void printi(uint32_t arr[], uint32_t length, uint32_t print_len);
 
 //function to swap two elements of array (arr[]) index
 //swaps with the index to the left
@@ -24,6 +24,6 @@ void swapi(uint32_t arr[], uint32_t i);
 bool compi(uint32_t val1, uint32_t val2);
 
 //function to perform the binary insertion sort
-void binary_insertion(uint32_t arr[], uint32_t length);
+void binary_insertion(uint32_t arr[], uint32_t length, uint32_t print_len);
 
 #endif

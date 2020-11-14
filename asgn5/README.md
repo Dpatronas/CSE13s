@@ -44,5 +44,7 @@ Program supports the following command line options
 	$./sorting -s 	runs shell sort
 	$./sorting -q 	runs quick sort
 	$./sorting -i 	runs binary insertion sort
-	$./sorting -p 	prints n elements of the array. (default n = 100)
+	$./sorting -p 	prints n elements of the array. (default print n = 100)
 	$./sorting -r 	set the random seed to s 		(default s = 8222022)
+	$./sorting -n 	sets the n elements of the array. (default n = 100)
+
