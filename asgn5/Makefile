@@ -22,4 +22,4 @@ clean:
 	rm -f $(TARGET) *.o
 
 infer:
-	make clean all valgrind; infer-capture -- make; infer-analyze -- make
+	make clean; infer-capture -- make; infer-analyze -- make
