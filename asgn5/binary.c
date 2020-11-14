@@ -4,8 +4,8 @@ void printi(uint32_t arr[], uint32_t length) {
   //print the elements, moves, and comps
 	printf("Binary Insertion Sort\n");
 	printf("%d elements, ",length);
-	printf("%llu moves, ", i_moves);
-	printf("%llu compares\n", i_comps);
+	printf("%lu moves, ", i_moves);
+	printf("%lu compares\n", i_comps);
 
   //iterate through array elements -1
   for (uint32_t i = 0; i < length; i++) {

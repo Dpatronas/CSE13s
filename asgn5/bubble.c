@@ -4,8 +4,8 @@ void printb(uint32_t arr[], uint32_t length) {
 	//print the elements, moves, and comps
 	printf("Bubble Sort\n");
 	printf("%d elements, ",length);
-	printf("%llu moves, ", b_moves);
-	printf("%llu compares\n", b_comps);
+	printf("%lu moves, ", b_moves);
+	printf("%lu compares\n", b_comps);
 
 	//iterate through array elements -1
   for (uint32_t i = 0; i < length; i++) {

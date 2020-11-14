@@ -4,8 +4,8 @@ void prints(uint32_t arr[], uint32_t length) {
   //print the elements, moves, and comps
   printf("Shell Sort\n");
   printf("%d elements, ",length);
-  printf("%llu moves, ", s_moves);
-  printf("%llu compares\n", s_comps);
+  printf("%lu moves, ", s_moves);
+  printf("%lu compares\n", s_comps);
 
   //iterate through array elements -1
   for (uint32_t i = 0; i < length; i++) {
