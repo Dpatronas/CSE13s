@@ -1,167 +1,167 @@
-[8221][environment] CWD = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
-[8221][environment] No .inferconfig file found
-[8221][environment] Project root = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
-[8221][environment] INFER_ARGS =   command line arguments:   infer-capture -- makeActive checkers: biabduction (C/C++/ObjC, Java), fragment retains view (Java), liveness (C/C++/ObjC), ownership (C/C++/ObjC), RacerD (C/C++/ObjC, Java), SIOF (C/C++/ObjC), uninitialized variables (C/C++/ObjC)
-[8221][environment] Infer log identifier is 
+[18102][environment] CWD = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
+[18102][environment] No .inferconfig file found
+[18102][environment] Project root = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
+[18102][environment] INFER_ARGS =   command line arguments:   infer-capture -- makeActive checkers: biabduction (C/C++/ObjC, Java), fragment retains view (Java), liveness (C/C++/ObjC), ownership (C/C++/ObjC), RacerD (C/C++/ObjC, Java), SIOF (C/C++/ObjC), uninitialized variables (C/C++/ObjC)
+[18102][environment] Infer log identifier is 
 Infer version v0.16.0-1172e6d
-[8221][environment] Copyright 2009 - present Facebook. All Rights Reserved.
-[8221][environment] 
-[8221][   progress] Capturing in make/cc mode...
-[8221][environment] Running command make with env:
-[8221][environment] MANPATH=/opt/rh/llvm-toolset-7/root/usr/share/man:/opt/rh/devtoolset-8/root/usr/share/man: 
-[8221][environment] XDG_SESSION_ID=42297 
-[8221][environment] HOSTNAME=unix3.lt.ucsc.edu 
-[8221][environment] GNUPLOT_DEFAULT_GDFONT=LiberationSans-Regular 
-[8221][environment] ANDROID_HOME=/usr/local/android-sdk 
-[8221][environment] TERM=xterm-256color 
-[8221][environment] SHELL=/bin/bash 
-[8221][environment] HISTSIZE=1000 
-[8221][environment] SSH_CLIENT=173.163.249.46 59952 22 
-[8221][environment] IDL_DIR=/usr/local/envi/idl82 
-[8221][environment] PERL5LIB=/opt/rh/devtoolset-8/root//usr/lib64/perl5/vendor_perl:/opt/rh/devtoolset-8/root/usr/lib/perl5:/opt/rh/devtoolset-8/root//usr/share/perl5/vendor_perl 
-[8221][environment] QTDIR=/usr/lib64/qt-3.3 
-[8221][environment] QTINC=/usr/lib64/qt-3.3/include 
-[8221][environment] SSH_TTY=/dev/pts/30 
-[8221][environment] QT_GRAPHICSSYSTEM_CHECKED=1 
-[8221][environment] USER=dpatrona 
-[8221][environment] PCP_DIR=/opt/rh/devtoolset-8/root 
-[8221][environment] LD_LIBRARY_PATH=/opt/rh/llvm-toolset-7/root/usr/lib64:/opt/rh/devtoolset-8/root/usr/lib64:/opt/rh/devtoolset-8/root/usr/lib:/opt/rh/devtoolset-8/root/usr/lib64/dyninst:/opt/rh/devtoolset-8/root/usr/lib/dyninst:/opt/rh/devtoolset-8/root/usr/lib64:/opt/rh/devtoolset-8/root/usr/lib 
-[8221][environment] LS_COLORS=rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45: 
-[8221][environment] GDFONTPATH=/usr/share/fonts/liberation 
-[8221][environment] MAKE_TERMOUT=/dev/pts/30 
-[8221][environment] MAKELEVEL=1 
-[8221][environment] MFLAGS= 
-[8221][environment] XDG_CONFIG_DIRS=/etc/xdg 
-[8221][environment] MAIL=/var/spool/mail/dpatrona 
-[8221][environment] PWD=/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3 
-[8221][environment] LANG=en_US.UTF-8 
-[8221][environment] KDEDIRS=/usr 
-[8221][environment] EXELIS_DIR=/usr/local/envi 
-[8221][environment] SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass 
-[8221][environment] KRB5CCNAME=KEYRING:persistent:265037 
-[8221][environment] HISTCONTROL=ignoredups 
-[8221][environment] SHLVL=2 
-[8221][environment] HOME=/afs/cats.ucsc.edu/users/n/dpatrona 
-[8221][environment] PYTHONPATH=/opt/rh/llvm-toolset-7/root/usr/lib/python2.7/site-packages:/opt/rh/devtoolset-8/root/usr/lib64/python2.7/site-packages:/opt/rh/devtoolset-8/root/usr/lib/python2.7/site-packages 
-[8221][environment] LOGNAME=dpatrona 
-[8221][environment] MAKE_TERMERR=/dev/pts/30 
-[8221][environment] CVS_RSH=ssh 
-[8221][environment] QTLIB=/usr/lib64/qt-3.3/lib 
-[8221][environment] SSH_CONNECTION=173.163.249.46 59952 128.114.104.56 22 
-[8221][environment] XDG_DATA_DIRS=/usr/local/share/:/usr/share/ 
-[8221][environment] LC_CTYPE=en_US.UTF-8 
-[8221][environment] PKG_CONFIG_PATH=/opt/rh/llvm-toolset-7/root/usr/lib64/pkgconfig:/opt/rh/devtoolset-8/root/usr/lib64/pkgconfig 
-[8221][environment] LESSOPEN=||/usr/bin/lesspipe.sh %s 
-[8221][environment] INFOPATH=/opt/rh/devtoolset-8/root/usr/share/info:/usr/local/texlive/2019/texmf-dist/doc/info 
-[8221][environment] XDG_RUNTIME_DIR=/run/user/265037 
-[8221][environment] QT_PLUGIN_PATH=/usr/lib64/kde4/plugins:/usr/lib/kde4/plugins 
-[8221][environment] _=/usr/local/bin/infer-capture 
-[8221][environment] INFER_CWD=/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3 
-[8221][environment] INFER_ARGS= 
-[8221][environment] INFER_TOP_RESULTS_DIR=/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/infer-out 
-[8221][environment] NO_BUCKD=1
-[8221][environment] PATH=/usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/wrappers:/usr/lib64/qt-3.3/bin:/opt/rh/llvm-toolset-7/root/usr/bin:/opt/rh/llvm-toolset-7/root/usr/sbin:/opt/rh/devtoolset-8/root/usr/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/local/texlive/2019/bin/x86_64-linux:/usr/local/codebench/bin:/afs/cats.ucsc.edu/users/n/dpatrona/bin:. 
-[8221][environment] INFER_OLD_PATH=/usr/lib64/qt-3.3/bin:/opt/rh/llvm-toolset-7/root/usr/bin:/opt/rh/llvm-toolset-7/root/usr/sbin:/opt/rh/devtoolset-8/root/usr/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/local/texlive/2019/bin/x86_64-linux:/usr/local/codebench/bin:/afs/cats.ucsc.edu/users/n/dpatrona/bin:.
-[8221][environment] 
+[18102][environment] Copyright 2009 - present Facebook. All Rights Reserved.
+[18102][environment] 
+[18102][   progress] Capturing in make/cc mode...
+[18102][environment] Running command make with env:
+[18102][environment] MANPATH=/opt/rh/llvm-toolset-7/root/usr/share/man:/opt/rh/devtoolset-8/root/usr/share/man: 
+[18102][environment] XDG_SESSION_ID=14834 
+[18102][environment] HOSTNAME=unix2.lt.ucsc.edu 
+[18102][environment] GNUPLOT_DEFAULT_GDFONT=LiberationSans-Regular 
+[18102][environment] ANDROID_HOME=/usr/local/android-sdk 
+[18102][environment] TERM=xterm-256color 
+[18102][environment] SHELL=/bin/bash 
+[18102][environment] HISTSIZE=1000 
+[18102][environment] SSH_CLIENT=173.163.249.46 50328 22 
+[18102][environment] IDL_DIR=/usr/local/envi/idl82 
+[18102][environment] PERL5LIB=/opt/rh/devtoolset-8/root//usr/lib64/perl5/vendor_perl:/opt/rh/devtoolset-8/root/usr/lib/perl5:/opt/rh/devtoolset-8/root//usr/share/perl5/vendor_perl 
+[18102][environment] QTDIR=/usr/lib64/qt-3.3 
+[18102][environment] QTINC=/usr/lib64/qt-3.3/include 
+[18102][environment] SSH_TTY=/dev/pts/30 
+[18102][environment] QT_GRAPHICSSYSTEM_CHECKED=1 
+[18102][environment] USER=dpatrona 
+[18102][environment] PCP_DIR=/opt/rh/devtoolset-8/root 
+[18102][environment] LD_LIBRARY_PATH=/opt/rh/llvm-toolset-7/root/usr/lib64:/opt/rh/devtoolset-8/root/usr/lib64:/opt/rh/devtoolset-8/root/usr/lib:/opt/rh/devtoolset-8/root/usr/lib64/dyninst:/opt/rh/devtoolset-8/root/usr/lib/dyninst:/opt/rh/devtoolset-8/root/usr/lib64:/opt/rh/devtoolset-8/root/usr/lib 
+[18102][environment] LS_COLORS=rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45: 
+[18102][environment] GDFONTPATH=/usr/share/fonts/liberation 
+[18102][environment] MAKE_TERMOUT=/dev/pts/30 
+[18102][environment] MAKELEVEL=1 
+[18102][environment] MFLAGS= 
+[18102][environment] XDG_CONFIG_DIRS=/etc/xdg 
+[18102][environment] MAIL=/var/spool/mail/dpatrona 
+[18102][environment] PWD=/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3 
+[18102][environment] LANG=en_US.UTF-8 
+[18102][environment] KDEDIRS=/usr 
+[18102][environment] EXELIS_DIR=/usr/local/envi 
+[18102][environment] SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass 
+[18102][environment] KRB5CCNAME=KEYRING:persistent:265037 
+[18102][environment] HISTCONTROL=ignoredups 
+[18102][environment] SHLVL=2 
+[18102][environment] HOME=/afs/cats.ucsc.edu/users/n/dpatrona 
+[18102][environment] PYTHONPATH=/opt/rh/llvm-toolset-7/root/usr/lib/python2.7/site-packages:/opt/rh/devtoolset-8/root/usr/lib64/python2.7/site-packages:/opt/rh/devtoolset-8/root/usr/lib/python2.7/site-packages 
+[18102][environment] LOGNAME=dpatrona 
+[18102][environment] MAKE_TERMERR=/dev/pts/30 
+[18102][environment] CVS_RSH=ssh 
+[18102][environment] QTLIB=/usr/lib64/qt-3.3/lib 
+[18102][environment] SSH_CONNECTION=173.163.249.46 50328 128.114.104.55 22 
+[18102][environment] XDG_DATA_DIRS=/usr/local/share/:/usr/share/ 
+[18102][environment] LC_CTYPE=en_US.UTF-8 
+[18102][environment] PKG_CONFIG_PATH=/opt/rh/llvm-toolset-7/root/usr/lib64/pkgconfig:/opt/rh/devtoolset-8/root/usr/lib64/pkgconfig 
+[18102][environment] LESSOPEN=||/usr/bin/lesspipe.sh %s 
+[18102][environment] INFOPATH=/opt/rh/devtoolset-8/root/usr/share/info:/usr/local/texlive/2019/texmf-dist/doc/info 
+[18102][environment] XDG_RUNTIME_DIR=/run/user/265037 
+[18102][environment] QT_PLUGIN_PATH=/usr/lib64/kde4/plugins:/usr/lib/kde4/plugins 
+[18102][environment] _=/usr/local/bin/infer-capture 
+[18102][environment] INFER_CWD=/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3 
+[18102][environment] INFER_ARGS= 
+[18102][environment] INFER_TOP_RESULTS_DIR=/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/infer-out 
+[18102][environment] NO_BUCKD=1
+[18102][environment] PATH=/usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/wrappers:/usr/lib64/qt-3.3/bin:/opt/rh/llvm-toolset-7/root/usr/bin:/opt/rh/llvm-toolset-7/root/usr/sbin:/opt/rh/devtoolset-8/root/usr/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/local/texlive/2019/bin/x86_64-linux:/usr/local/codebench/bin:/afs/cats.ucsc.edu/users/n/dpatrona/bin:. 
+[18102][environment] INFER_OLD_PATH=/usr/lib64/qt-3.3/bin:/opt/rh/llvm-toolset-7/root/usr/bin:/opt/rh/llvm-toolset-7/root/usr/sbin:/opt/rh/devtoolset-8/root/usr/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/local/texlive/2019/bin/x86_64-linux:/usr/local/codebench/bin:/afs/cats.ucsc.edu/users/n/dpatrona/bin:.
+[18102][environment] 
 
-[8225][environment] CWD = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
-[8225][environment] No .inferconfig file found
-[8225][environment] Project root = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
-[8225][environment] INFER_ARGS =   @/tmp/args.tmp.c54680  ++Contents of '/tmp/args.tmp.c54680':
-[8225][environment]                                         -c tower.c stack.c
-[8225][environment]                                       
-[8225][environment] command line arguments:   clang -c tower.c stack.cActive checkers: biabduction (C/C++/ObjC, Java), fragment retains view (Java), liveness (C/C++/ObjC), ownership (C/C++/ObjC), RacerD (C/C++/ObjC, Java), SIOF (C/C++/ObjC), uninitialized variables (C/C++/ObjC)
-[8225][      debug] 
-[8225][      debug] *** Beginning capture of file /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/tower.c ***
-[8225][      debug] Clang frontend action is translating and linting
-[8225][      debug] Loading the following linters files: /usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/linter_rules/linters.al
-[8225][      debug] Elapsed: 84.126ms.
-[8225][      debug] 
-[8225][      debug] *** Beginning capture of file /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/stack.c ***
-[8225][      debug] Clang frontend action is translating and linting
-[8225][      debug] Loading the following linters files: /usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/linter_rules/linters.al
-[8225][      debug] Elapsed: 41.884ms.
-[8225][      debug] 
-[8225][ extern err] Error: the following clang command did not run successfully:
-[8225][ extern err]     /usr/local/infer-0.15.0/lib/infer/facebook-clang-plugins/clang/install/bin/clang-7
-[8225][ extern err]     @/tmp/clang_command_.tmp.af1000.txt  ++Contents of '/tmp/clang_command_.tmp.af1000.txt':
-[8225][ extern err]                                            "-cc1" "-load"
-[8225][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/infer/bin/../../facebook-clang-plugins/libtooling/build/FacebookClangPlugin.dylib"
-[8225][ extern err]                                            "-add-plugin" "BiniouASTExporter"
-[8225][ extern err]                                            "-plugin-arg-BiniouASTExporter"
-[8225][ extern err]                                            "-"
-[8225][ extern err]                                            "-plugin-arg-BiniouASTExporter"
-[8225][ extern err]                                            "PREPEND_CURRENT_DIR=1"
-[8225][ extern err]                                            "-plugin-arg-BiniouASTExporter"
-[8225][ extern err]                                            "MAX_STRING_SIZE=65535" "-cc1"
-[8225][ extern err]                                            "-triple"
-[8225][ extern err]                                            "x86_64-unknown-linux-gnu"
-[8225][ extern err]                                            "-emit-obj" "-mrelax-all"
-[8225][ extern err]                                            "-disable-free"
-[8225][ extern err]                                            "-disable-llvm-verifier"
-[8225][ extern err]                                            "-discard-value-names"
-[8225][ extern err]                                            "-main-file-name" "stack.c"
-[8225][ extern err]                                            "-mrelocation-model" "static"
-[8225][ extern err]                                            "-mthread-model" "posix"
-[8225][ extern err]                                            "-mdisable-fp-elim" "-fmath-errno"
-[8225][ extern err]                                            "-masm-verbose"
-[8225][ extern err]                                            "-mconstructor-aliases"
-[8225][ extern err]                                            "-munwind-tables"
-[8225][ extern err]                                            "-fuse-init-array" "-target-cpu"
-[8225][ extern err]                                            "x86-64" "-dwarf-column-info"
-[8225][ extern err]                                            "-debugger-tuning=gdb"
-[8225][ extern err]                                            "-coverage-notes-file"
-[8225][ extern err]                                            "/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/stack.gcno"
-[8225][ extern err]                                            "-resource-dir"
-[8225][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/facebook-clang-plugins/clang/install/lib/clang/7.0.1"
-[8225][ extern err]                                            "-include"
-[8225][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/clang_wrappers/global_defines.h"
-[8225][ extern err]                                            "-internal-isystem"
-[8225][ extern err]                                            "/usr/local/include"
-[8225][ extern err]                                            "-internal-isystem"
-[8225][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/facebook-clang-plugins/clang/install/lib/clang/7.0.1/include"
-[8225][ extern err]                                            "-internal-externc-isystem"
-[8225][ extern err]                                            "/include"
-[8225][ extern err]                                            "-internal-externc-isystem"
-[8225][ extern err]                                            "/usr/include"
-[8225][ extern err]                                            "-Wno-ignored-optimization-argument"
-[8225][ extern err]                                            "-Wno-everything"
-[8225][ extern err]                                            "-fdebug-compilation-dir"
-[8225][ extern err]                                            "/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3"
-[8225][ extern err]                                            "-ferror-limit" "19"
-[8225][ extern err]                                            "-fmessage-length" "0"
-[8225][ extern err]                                            "-fobjc-runtime=gcc"
-[8225][ extern err]                                            "-fdiagnostics-show-option" "-o"
-[8225][ extern err]                                            "stack.o" "-x" "c" "stack.c" "-O0"
-[8225][ extern err]                                            "-include"
-[8225][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/clang_wrappers/global_defines.h"
-[8225][ extern err]                                            "-Wno-everything"
-[8225][ extern err]                                          
-[8225][ extern err] 
-[8225][environment] Infer log identifier is 
-[8221][ extern err] *** capture command failed:
+[18107][environment] CWD = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
+[18107][environment] No .inferconfig file found
+[18107][environment] Project root = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
+[18107][environment] INFER_ARGS =   @/tmp/args.tmp.0ccd40  ++Contents of '/tmp/args.tmp.0ccd40':
+[18107][environment]                                         -c tower.c stack.c
+[18107][environment]                                       
+[18107][environment] command line arguments:   clang -c tower.c stack.cActive checkers: biabduction (C/C++/ObjC, Java), fragment retains view (Java), liveness (C/C++/ObjC), ownership (C/C++/ObjC), RacerD (C/C++/ObjC, Java), SIOF (C/C++/ObjC), uninitialized variables (C/C++/ObjC)
+[18107][      debug] 
+[18107][      debug] *** Beginning capture of file /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/tower.c ***
+[18107][      debug] Clang frontend action is translating and linting
+[18107][      debug] Loading the following linters files: /usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/linter_rules/linters.al
+[18107][      debug] Elapsed: 78.75ms.
+[18107][      debug] 
+[18107][      debug] *** Beginning capture of file /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/stack.c ***
+[18107][      debug] Clang frontend action is translating and linting
+[18107][      debug] Loading the following linters files: /usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/linter_rules/linters.al
+[18107][      debug] Elapsed: 45.063ms.
+[18107][      debug] 
+[18107][ extern err] Error: the following clang command did not run successfully:
+[18107][ extern err]     /usr/local/infer-0.15.0/lib/infer/facebook-clang-plugins/clang/install/bin/clang-7
+[18107][ extern err]     @/tmp/clang_command_.tmp.b42f83.txt  ++Contents of '/tmp/clang_command_.tmp.b42f83.txt':
+[18107][ extern err]                                            "-cc1" "-load"
+[18107][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/infer/bin/../../facebook-clang-plugins/libtooling/build/FacebookClangPlugin.dylib"
+[18107][ extern err]                                            "-add-plugin" "BiniouASTExporter"
+[18107][ extern err]                                            "-plugin-arg-BiniouASTExporter"
+[18107][ extern err]                                            "-"
+[18107][ extern err]                                            "-plugin-arg-BiniouASTExporter"
+[18107][ extern err]                                            "PREPEND_CURRENT_DIR=1"
+[18107][ extern err]                                            "-plugin-arg-BiniouASTExporter"
+[18107][ extern err]                                            "MAX_STRING_SIZE=65535" "-cc1"
+[18107][ extern err]                                            "-triple"
+[18107][ extern err]                                            "x86_64-unknown-linux-gnu"
+[18107][ extern err]                                            "-emit-obj" "-mrelax-all"
+[18107][ extern err]                                            "-disable-free"
+[18107][ extern err]                                            "-disable-llvm-verifier"
+[18107][ extern err]                                            "-discard-value-names"
+[18107][ extern err]                                            "-main-file-name" "stack.c"
+[18107][ extern err]                                            "-mrelocation-model" "static"
+[18107][ extern err]                                            "-mthread-model" "posix"
+[18107][ extern err]                                            "-mdisable-fp-elim" "-fmath-errno"
+[18107][ extern err]                                            "-masm-verbose"
+[18107][ extern err]                                            "-mconstructor-aliases"
+[18107][ extern err]                                            "-munwind-tables"
+[18107][ extern err]                                            "-fuse-init-array" "-target-cpu"
+[18107][ extern err]                                            "x86-64" "-dwarf-column-info"
+[18107][ extern err]                                            "-debugger-tuning=gdb"
+[18107][ extern err]                                            "-coverage-notes-file"
+[18107][ extern err]                                            "/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/stack.gcno"
+[18107][ extern err]                                            "-resource-dir"
+[18107][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/facebook-clang-plugins/clang/install/lib/clang/7.0.1"
+[18107][ extern err]                                            "-include"
+[18107][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/clang_wrappers/global_defines.h"
+[18107][ extern err]                                            "-internal-isystem"
+[18107][ extern err]                                            "/usr/local/include"
+[18107][ extern err]                                            "-internal-isystem"
+[18107][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/facebook-clang-plugins/clang/install/lib/clang/7.0.1/include"
+[18107][ extern err]                                            "-internal-externc-isystem"
+[18107][ extern err]                                            "/include"
+[18107][ extern err]                                            "-internal-externc-isystem"
+[18107][ extern err]                                            "/usr/include"
+[18107][ extern err]                                            "-Wno-ignored-optimization-argument"
+[18107][ extern err]                                            "-Wno-everything"
+[18107][ extern err]                                            "-fdebug-compilation-dir"
+[18107][ extern err]                                            "/afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3"
+[18107][ extern err]                                            "-ferror-limit" "19"
+[18107][ extern err]                                            "-fmessage-length" "0"
+[18107][ extern err]                                            "-fobjc-runtime=gcc"
+[18107][ extern err]                                            "-fdiagnostics-show-option" "-o"
+[18107][ extern err]                                            "stack.o" "-x" "c" "stack.c" "-O0"
+[18107][ extern err]                                            "-include"
+[18107][ extern err]                                            "/usr/local/infer-0.15.0/lib/infer/infer/bin/../lib/clang_wrappers/global_defines.h"
+[18107][ extern err]                                            "-Wno-everything"
+[18107][ extern err]                                          
+[18107][ extern err] 
+[18107][environment] Infer log identifier is 
+[18102][ extern err] *** capture command failed:
 *** make
 *** exited with code 2
 
-[8221][ extern err] Raised at file "format.ml" (inlined), line 242, characters 35-52
+[18102][ extern err] Raised at file "format.ml" (inlined), line 242, characters 35-52
 Called from file "format.ml", line 469, characters 8-33
 Called from file "format.ml", line 484, characters 6-24
 
 
-[8232][      phase] ============================================================
-[8232][      phase] = New infer execution begins
-[8232][      phase] ============================================================
-[8232][environment] CWD = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
-[8232][environment] No .inferconfig file found
-[8232][environment] Project root = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
-[8232][environment] INFER_ARGS =   command line arguments:   infer-analyze -- makeActive checkers: biabduction (C/C++/ObjC, Java), fragment retains view (Java), liveness (C/C++/ObjC), ownership (C/C++/ObjC), RacerD (C/C++/ObjC, Java), SIOF (C/C++/ObjC), uninitialized variables (C/C++/ObjC)
-[8232][environment] Infer log identifier is 
+[18114][      phase] ============================================================
+[18114][      phase] = New infer execution begins
+[18114][      phase] ============================================================
+[18114][environment] CWD = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
+[18114][environment] No .inferconfig file found
+[18114][environment] Project root = /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3
+[18114][environment] INFER_ARGS =   command line arguments:   infer-analyze -- makeActive checkers: biabduction (C/C++/ObjC, Java), fragment retains view (Java), liveness (C/C++/ObjC), ownership (C/C++/ObjC), RacerD (C/C++/ObjC, Java), SIOF (C/C++/ObjC), uninitialized variables (C/C++/ObjC)
+[18114][environment] Infer log identifier is 
 Infer version v0.16.0-1172e6d
-[8232][environment] Copyright 2009 - present Facebook. All Rights Reserved.
-[8232][environment] 
-[8232][   progress] Found 2 source files to analyze in /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/infer-out
-[8232][environment] Parallel jobs: 2
-[8236][   progress] tower.c starting
-[8237][   progress] stack.c starting
-[8237][   progress] stack.c DONE
-[8236][   progress] tower.c DONE
+[18114][environment] Copyright 2009 - present Facebook. All Rights Reserved.
+[18114][environment] 
+[18114][   progress] Found 2 source files to analyze in /afs/cats.ucsc.edu/users/n/dpatrona/dpatrona/asgn3/infer-out
+[18114][environment] Parallel jobs: 2
+[18117][   progress] tower.c starting
+[18118][   progress] stack.c starting
+[18118][   progress] stack.c DONE
+[18117][   progress] tower.c DONE
