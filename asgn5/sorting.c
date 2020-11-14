@@ -91,7 +91,7 @@ int main ( int argc, char ** argv) {
 	}
 
 	//initialize the array
-	uint32_t *arr = calloc(32, sizeof(uint32_t));
+	uint32_t *arr = calloc(length, sizeof(uint32_t));
 
 	//initially fill the array with rand seed
 	fill_array(arr, length, seed);
