@@ -16,7 +16,7 @@ $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 valgrind:
-	valgrind ./$(TARGET)
+	valgrind ./$(TARGET) -A
 
 clean:
 	rm -f $(TARGET) *.o
