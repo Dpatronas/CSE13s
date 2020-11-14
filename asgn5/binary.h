@@ -23,11 +23,6 @@ void swapi(uint32_t arr[], uint32_t i);
 //increments count by 1
 bool compi(uint32_t val1, uint32_t val2);
 
-//function to compare two values from array index
-//Returns true if val1 < val2
-//increments count by 1
-bool compi2( uint32_t val1, uint32_t val2);
-
 //function to perform the binary insertion sort
 void binary_insertion(uint32_t arr[], uint32_t length, uint32_t print_len);
 
