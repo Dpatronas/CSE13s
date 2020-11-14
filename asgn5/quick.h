@@ -26,6 +26,6 @@ bool compq(uint32_t low, uint32_t hi);
 int partition(uint32_t arr[], int32_t left, int32_t right);
 
 //function to perform quick sort on an array
-void quick_sort(uint32_t arr[], int32_t left, int32_t right, uint32_t length, uint32_t print_len);
+void quick_sort(uint32_t arr[], int32_t left, int32_t right);
 
 #endif
