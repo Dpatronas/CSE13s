@@ -74,18 +74,14 @@ int partition(uint32_t arr[], int32_t left, int32_t right) {
   return hi;
 }
 
-void quick_sort(uint32_t arr[], int32_t left, int32_t right, uint32_t length, uint32_t print_len) {
+void quick_sort(uint32_t arr[], int32_t left, int32_t right) {
   // left < right no comps here
 	if ( left < right ) {
     //set index = hi
     uint32_t index = partition(arr, left, right);
     //sort based on new right = index -1
-    quick_sort(arr, left, index - 1, length, print_len);
+    quick_sort(arr, left, index - 1);
     //sort based on new left = hi+1
-    quick_sort(arr, index + 1, right, length, print_len);
-  }
-  else {
-  //print the array when it is finished
-  printq(arr, length, print_len);
+    quick_sort(arr, index + 1, right);
   }
 }

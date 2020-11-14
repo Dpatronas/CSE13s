@@ -123,7 +123,8 @@ int main ( int argc, char ** argv) {
         if ( all ) {
             printf("\n");
         }
-        quick_sort(arr, 0, length-1, length, print_len);
+        quick_sort(arr, 0, length-1);
+        printq(arr, length, print_len);
         //reset and refill with same rand seed if all was triggered
         reset_array(arr, length);
         fill_array(arr, length, seed);
