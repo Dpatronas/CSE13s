@@ -33,7 +33,12 @@ sorting.c
 
 	•make clean 	removes all files that compiler generated.
 	•make valgrind 	will generate a valgrind report of memory usage
-	•make infer 	generates a report of memory usage and errors
+			(based on: valgrind ./sorting -A)
+
+	•make infer 	**Make infer has an issue with NULL DEREFERENCE pointer**
+			 of calloced array being called in function as parameter
+			 (note: valgrind reports no memory leaks)
+
 	•make 			builds the program
 	•make all 		builds the program
 
@@ -44,7 +49,9 @@ Program supports the following command line options
 	$./sorting -s 	runs shell sort
 	$./sorting -q 	runs quick sort
 	$./sorting -i 	runs binary insertion sort
-	$./sorting -p 	prints n elements of the array. (default print n = 100)
-	$./sorting -r 	set the random seed to s 		(default s = 8222022)
+	$./sorting -p 	prints n elements of the array.   (default print n = 100)
+	$./sorting -r 	set the random seed to s	  (default s = 8222022)
 	$./sorting -n 	sets the n elements of the array. (default n = 100)
 
+Valgrind Report: 400 Bytes allocated.
+		 Total Heap Usage: 1 alloc made, 1 alloc freed. NO MEMORY LEAKS
