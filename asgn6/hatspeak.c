@@ -1,5 +1,7 @@
 #include "hatspeak.h"
 
+#define strdup(s) strcpy(malloc(strlen(s) + 1), s)
+
 HatterSpeak * hs_create(char *oldspeak, char *hatter) {
 
   HatterSpeak *hs = (HatterSpeak *)malloc(sizeof(HatterSpeak));
@@ -9,7 +11,7 @@ HatterSpeak * hs_create(char *oldspeak, char *hatter) {
   }
 
   //malloc + copy string
-  hs->oldspeak = strndup( oldspeak, strlen(oldspeak));
+  hs->oldspeak = strdup( oldspeak );
  
   if ( !hs->oldspeak) {  //check if oldspeak allocated
     printf("bad oldspeak field malloc");
@@ -18,7 +20,7 @@ HatterSpeak * hs_create(char *oldspeak, char *hatter) {
   //if a hatterspeak is passed into function (non null)
   if (hatter) {
     //malloc + copy string
-    hs->hatter = strndup( hatter, strlen(hatter));
+    hs->hatter = strdup( hatter );
 
     if ( !hs->oldspeak) {  //check if oldspeak allocated
       printf("bad oldspeak field malloc");

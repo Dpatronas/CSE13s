@@ -92,9 +92,9 @@ ListNode *ll_lookup(ListNode **head, char *key) {
 
     //deference and strcomp()
     if ( strcmp( stored, key) == 0 ) {
-//////printf("\nstored: %s", stored);
-//////printf(" == key found: %s", key);
-//////ll_node_print( curr_head );
+      //printf("\nstored: %s", stored);
+      //printf(" == key found: %s", key);
+      //ll_node_print( curr_head );
 
       node_res = curr_head;
       curr_head = curr_head->next;
@@ -109,21 +109,23 @@ ListNode *ll_lookup(ListNode **head, char *key) {
   return node_res;
 }
 
-void ll_print(ListNode *head) {
-  
-  ListNode * curr_head = head;
 
+void ll_print(ListNode **head) {
+  
+  ListNode * curr_head = *head;
   while( curr_head ) {
 
-    printf("%s", curr_head->gs->oldspeak);
-    printf(" %s\n", curr_head->gs->hatter);
-
+    ll_node_print( &curr_head );
+    printf("\n");
     curr_head = curr_head->next;
   }
 }
+  
+void ll_node_print( ListNode **head ) {
+  ListNode *curr_head = *head;
+  printf("%s", curr_head->gs->oldspeak);
 
-//print the fields of the struct in the node of ll 
-void ll_node_print( ListNode *head ) {
-  printf("\n\n%s", head->gs->oldspeak);
-  printf(" -> %s\n", head->gs->hatter);
+  if ( curr_head->gs->hatter ) {
+    printf(" -> %s", curr_head->gs->hatter);
+  }
 }

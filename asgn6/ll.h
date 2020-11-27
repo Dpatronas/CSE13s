@@ -11,7 +11,6 @@
 
 //If flag is set, ListNode that are queried (ll_lookup) are moved to the front
 extern bool move_to_front;
-//The number of links
 static int links = 0;
 static int ll_length = 0;
 
@@ -49,8 +48,8 @@ ListNode *ll_insert(ListNode **head, struct HatterSpeak *gs);
 ListNode *ll_lookup(ListNode **head, char *key);
 
 //debugging tools
-void ll_print(ListNode *head);
+void ll_print(ListNode **head);
 
-void ll_node_print( ListNode *head );
+void ll_node_print( ListNode **head );
 
 #endif

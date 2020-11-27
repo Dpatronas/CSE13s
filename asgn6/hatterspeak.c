@@ -100,19 +100,82 @@ void read_hatterspeak_txt( BloomFilter *bf, HashTable *ht ) {
 
 }
 
-//
-//function to read input from stdin 
-//validates the word(s) with regex
-//normalize word(s) to lower characters
-//checks if input exists in the bloomfilter
-//looks up the struct from ht
-//determine whether forbidden and/or translatable word
-//
-void parse( BloomFilter *bf, HashTable *ht, ListNode *forbidden, ListNode *translatable ) {
+int main(int argc, char **argv) {
+  
+  int c = 0;
+  //optarg user inputs
+  bool stats = 0;
+  bool notMTF = 0;
+  char *get_ht_size = NULL;
+  char *get_bf_size = NULL;
 
-  FILE *infile = stdin;
-  infile = fopen("test.txt", "r");
-    
+  //default values
+  uint32_t bfsize = 1048576;
+  uint32_t htsize = 10000;
+
+//////////////////////////////////////////////////////////////
+
+//getopt while
+  while ( (c = getopt(argc, argv, OPTIONS)) != -1) {
+    switch (c) {
+
+      //show stats supress text
+      case 's':
+        stats = 1;
+        break;
+
+      //set size of hashtable
+      case 'h':
+        get_ht_size = optarg;
+        if (atoi(get_ht_size) > 0) {
+          htsize = atoi(get_ht_size);
+        }
+        break;
+
+      //set size of  bloomfilter
+      case 'f':
+        get_bf_size = optarg;
+        if (atoi(get_bf_size) > 0) {
+          bfsize = atoi(get_bf_size);
+        }
+        break;
+
+      //
+      case 'm':
+        move_to_front = 1;
+        break;
+
+      case 'b':
+        notMTF = 1;
+        break;
+    }
+  }
+
+////error check the getopt
+//  if (argc == 1) {
+//    return -1;
+//  }
+
+//exit if both -m and -b are selected
+  if ( move_to_front && notMTF) {
+    printf("Cannot select both -m & -b options! Exitting..");
+    exit(1);
+  }
+
+//////////////////////////////////////////////////////////////
+
+  //create the two adts
+  BloomFilter * bf = bf_create( bfsize);
+  HashTable * ht = ht_create( htsize);
+
+  //create the linked lists to hold the words
+  ListNode *forbidden = NULL;
+  ListNode *translatable = NULL;
+
+  //popoulate the bf and ht
+  read_oldspeak_txt( bf, ht );
+  read_hatterspeak_txt( bf, ht );
+  
   regex_t regx;
 
   if ( regcomp (&regx, REG, REG_EXTENDED) ) {
@@ -122,11 +185,9 @@ void parse( BloomFilter *bf, HashTable *ht, ListNode *forbidden, ListNode *trans
 
   char *input = NULL;         //stores user input strings
 
-  while ((input = next_word(infile, &regx)) != NULL ) {
+  while ((input = next_word(stdin, &regx)) != NULL ) {
     
     to_low(input);
-////printf("read: %s\n", input);
-
     if (bf_probe(bf, input)) {
 
       //create a node that is set from node of input key
@@ -157,144 +218,68 @@ void parse( BloomFilter *bf, HashTable *ht, ListNode *forbidden, ListNode *trans
     }
   }
 
-  fclose(infile);
+  fclose(stdin);
   Clear_words();
-  regfree(&regx); //free the regex
+  regfree(&regx);
 
-}
-
-void pstats() {
-
-//    //# of times the hashtable looks for a key in linked list
-//    printf("Seeks: %d", seeks);
-//    //
-//    //printf("Average Seek Length: %f",);
-//    //sum of linked list length / ht length
-//    printf("Average Linked List Length: %uf", (ll_length/ ht->length));
-//    //hashtable load is the total size of ht/ !NULL heads in the ht
-//    printf("Hash Table Load: %uf%", (htsize / ht_count(ht)));
-//    //number of set bits in bf / length of bf
-//    printf("Bloom Filter Load: %uf%", (set_bits / bfsize));
-//  }
-
-}
-
-//
-//function to print the letter messages
-//
-void pletter ( ListNode forbidden, ListNode translatable) {
-  
+  //print the letter
   if( error_letter && trans_letter) {
     printf("Dear Comrade,");
     printf("\n\nYou have chosen to use words that the queen has decreed oldspeak.");
-    printf("\nDue to your infraction you will be sent to the dungeon where you will");
-    printf("\n\tbe taught hatterspeak.");
-
+    printf("\nDue to your infraction you will be sent to the dungeon where you will be taught hatterspeak.");
     printf("\n\nYour errors:\n\n");
+    
     ll_print( &forbidden );
 
-    printf("\n\nAppropriate hatterspeak translations.\n\n");
+    printf("\nAppropriate hatterspeak translations.\n\n");
+
     ll_print( &translatable );
+
   }
 
   else if( error_letter ) {
     printf("\nDear Comrade,");
     printf("\n\nYou have chosen to use words that the queen has decreed oldspeak.");
-    printf("\nDue to your infraction you will be sent to the dungeon where you will");
-    printf("\n\tbe taught hatterspeak.");
+    printf("\nDue to your infraction you will be sent to the dungeon where you will be taught hatterspeak.");
+    printf("\n\nYour errors:");
 
-    printf("\n\nYour errors:\n\n");
     ll_print( &forbidden );
   }
 
   else if( trans_letter ) {
     printf("Dear Comrade,");
-    printf("\n\nThe decree for hatterspeak finds your message lacking. Some of the");
-    printf("\n\twords that you used are not hatterspeak.");
+    printf("\n\nThe decree for hatterspeak finds your message lacking. Some of the words that you used are not hatterspeak.");
     printf("\nThe list shows how to turn the oldspeak words into hatterspeak.\n\n");
-    ll_print( & translatable);
-  }
-}
 
-int main(int argc, char **argv) {
+    ll_print( &translatable );
+  }
+
+  //# of times the hashtable looks for a key in linked list
+  printf("\nSeeks: %d", seeks);
+
+  //number of nodes travered / seeks
+  //printf("Average Seek Length: %uf", (links / seeks) );
+
+  //sum of linked list length / ht length
+  printf("\nAverage Linked List Length: %u", (ll_length/ ht->length) );
+
+  //hashtable load is the total size of ht/ !NULL heads in the ht
+  printf("\nHash Table Load: %u", (ht->length / ht_count(ht)) );
   
-  int c = 0;
-  //optarg user inputs
-  bool stats = 0;
-  bool notMTF = 0;
-  char *get_ht_size = NULL;
-  char *get_bf_size = NULL;
-
-  //default values
-  uint32_t bfsize = 1048576;
-  uint32_t htsize = 10000;
+  //number of set bits in bf / length of bf
+  //printf("\nset_bits = %d", set_bits);
+  //printf("\nBloom Filter Load: %u", (set_bits / bfsize) );
 
 //////////////////////////////////////////////////////////////
 
-  //getopt while
-  while ( (c = getopt(argc, argv, OPTIONS)) != -1) {
-    switch (c) {
-
-      //show stats supress text
-      case 's':
-        stats = 1;
-        break;
-
-      //set size of hashtable
-      case 'h':
-        get_ht_size = optarg;
-        if (atoi(get_ht_size) > 0) {
-          htsize = atoi(get_ht_size);
-        }
-        break;
-
-      //set size of  bloomfilter
-      case 'f':
-        get_bf_size = optarg;
-        if (atoi(get_bf_size) > 0) {
-          bfsize = atoi(get_bf_size);
-        }
-        break;
-
-      //
-      case 'm':
-        move_to_front = 1;
-        break;
-
-      //default
-      case 'b':
-        notMTF = 1;
-        break;
-    }
-  }
-
-  //exit if both -m and -b are selected
-  if ( move_to_front && notMTF) {
-    printf("Cannot select both -m & -b options! Exitting..");
-    exit(1);
-  }
-
-//////////////////////////////////////////////////////////////
-
-  //create the two adts
-  BloomFilter * bf = bf_create( bfsize);
-  HashTable * ht = ht_create( htsize);
-
-  //create the linked lists to hold the words
-  ListNode *forbidden = NULL;
-  ListNode *translatable = NULL;
-
-  //popoulate the bf and ht
-  read_oldspeak_txt( bf, ht );
-  read_hatterspeak_txt( bf, ht );
-
-  //take in user input
-  parse(bf, ht, forbidden, translatable);
-    
-    ll_print( forbidden );
-    ll_print( translatable );
-    printf( "continue" );
-//////////////////////////////////////////////////////////////
+//  //optarg display
+//  if (stats) {
+//    pstats();
+//  }
+//
+//  else {
+//    pletter( *forbidden, *translatable );
+//  }
 
   return 0;
 }
