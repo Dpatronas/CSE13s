@@ -15,7 +15,7 @@
 #define REG "[a-zA-z0-9_]+(('|-)[a-zA-Z0-9_]*)*"
 
 //getopt / optargs
-#define OPTIONS "shmb:f:"
+#define OPTIONS "smbh:f:"
 
 //externs
 bool move_to_front;
@@ -129,6 +129,16 @@ int main(int argc, char **argv) {
         stats = 1;
         break;
 
+      //toggle move to front
+      case 'm':
+        move_to_front = 1;
+        break;
+
+      //disable move to front
+      case 'b':
+        notMTF = 1;
+        break;
+        
       //set size of hashtable
       case 'h':
         get_ht_size = optarg;
@@ -143,16 +153,6 @@ int main(int argc, char **argv) {
         if (atoi(get_bf_size) > 0) {
           bfsize = atoi(get_bf_size);
         }
-        break;
-
-      //toggle move to front
-      case 'm':
-        move_to_front = 1;
-        break;
-
-      //disable move to front
-      case 'b':
-        notMTF = 1;
         break;
     }
   }
