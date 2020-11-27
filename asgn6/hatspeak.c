@@ -33,7 +33,7 @@ HatterSpeak * hs_create(char *oldspeak, char *hatter) {
   return hs;
 }
 
-void hs_delete( HatterSpeak *hs, char *oldspeak, char * hatter) {
+void hs_delete(HatterSpeak *hs) {
   free(hs->oldspeak);
   free(hs->hatter);
   free(hs);
