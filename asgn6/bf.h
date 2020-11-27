@@ -9,7 +9,7 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
-static int set_bits = 0;
+extern int set_bits;
 
 //	Struct  definition  for a BloomFilter.
 //

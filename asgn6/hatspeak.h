@@ -22,5 +22,7 @@ HatterSpeak;
 HatterSpeak * hs_create(char *oldspeak, char *hatter);
 
 //destructor
+void hs_delete(HatterSpeak *hs, char *oldspeak, char *hatter);
+
 
 #endif

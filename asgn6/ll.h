@@ -11,8 +11,8 @@
 
 //If flag is set, ListNode that are queried (ll_lookup) are moved to the front
 extern bool move_to_front;
-static int links = 0;
-static int ll_length = 0;
+extern int links;
+extern int ll_length;
 
 typedef struct ListNode ListNode;
 
@@ -48,8 +48,10 @@ ListNode *ll_insert(ListNode **head, struct HatterSpeak *gs);
 ListNode *ll_lookup(ListNode **head, char *key);
 
 //debugging tools
+//print the linked list starting at head
 void ll_print(ListNode **head);
 
+//print a node of the linked list
 void ll_node_print( ListNode **head );
 
 #endif

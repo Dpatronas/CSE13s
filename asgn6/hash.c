@@ -1,5 +1,7 @@
 #include "hash.h"
 
+int seeks;
+
 //similar to ll
 //HashTable : chaining linked lists 
 // salt:		The salt of the HashTable (used for hashing)
@@ -31,18 +33,17 @@ void ht_delete(HashTable *ht) {
       free(ht->heads);
     }
   }
-  free(ht->heads);  
-  //free ht
+  free(ht->heads);
   free(ht);
 }
 
 //Returns a number of entries in a hash table
 // h:			The HashTable
 //count all the elements of all the linked lists number of heads
-uint32_t ht_count(HashTable *h) {
+uint32_t ht_count(HashTable *ht) {
   uint32_t count = 0;
-  for (uint32_t i = 0; i < h->length; i++) {
-    if ( h->heads[i] ) {
+  for (uint32_t i = 0; i < ht->length; i++) {
+    if ( ht->heads[i] ) {
       count++;
     }
   }
@@ -60,9 +61,9 @@ ListNode *ht_lookup (HashTable *ht, char *key) {
   ListNode* ret = NULL;
   uint32_t index = ( hash(ht->salt,key) ) % ht->length;
 
-                //addr heads[index], word
+  //addr heads[index], word
   if ( ll_lookup( &ht->heads[index], key) ) {
-////printf("\nKey (%s) in HT?: YES\n", key);
+
     ret = ll_lookup( &ht->heads[index], key );
   }
   else  {
@@ -71,15 +72,16 @@ ListNode *ht_lookup (HashTable *ht, char *key) {
   return ret;
 }
 
+//
 //Searches a HashTable for a key
 //Returns the ListNode if found and if not, returns NULL
 //This should call the ll_lookup() function to ensure its not already present in hashtable
 //if there is an oldspeak present handle it!
 //ht:			The HashTable
 //gs:			The Hatterspeak to add to the HashTable (hash the oldspeak = key)
+//
 void ht_insert(HashTable *ht, struct HatterSpeak *gs) {
   uint32_t len = ht->length;
   uint32_t index = (hash(ht->salt, gs->oldspeak)) % len;
   ht->heads[index] = ll_insert( &ht->heads[index], gs );
-  //printf("hashing\n");
 }

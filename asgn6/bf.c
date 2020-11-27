@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int set_bits;
+
 //create a bloom filter with the sized 64 bit for total of 128 bit (not native)
 BloomFilter *bf_create(uint32_t size) {
   BloomFilter *bf = (BloomFilter *)malloc(sizeof(BloomFilter));
@@ -70,12 +72,10 @@ bool bf_probe(BloomFilter *bf, char *key) {
 
   //if all three indexes are set (PROBABLY) in the BloomFilter set
   if ( first && second && third ) {
-////printf("\nKey (%s) in BV?: YES\n", key);
     return true;
   }
 
   //if not definitely NOT in the set
   else 
-////printf("\nKey (%s) in BV?:  Nu\n", key);
     return false;
 }

@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int seeks = 0;
+extern int seeks;
 
 //	Struct  definition  for a HashTable
 //chaining linked lists 
