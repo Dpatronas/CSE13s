@@ -58,7 +58,10 @@ ListNode *ll_insert(ListNode **head, struct HatterSpeak *gs) {
 	if ( ll_lookup (head, gs->oldspeak) ) {
 		//printf("\nduplicate found!\n");
 		free(gs->oldspeak);
-		free(gs->hatter);
+		//check if there is a hatter in the struct
+		if (gs->hatter) {
+			free(gs->hatter);
+		}
 		free(gs);
 		return *head;
 	}

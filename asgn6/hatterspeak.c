@@ -138,7 +138,7 @@ int main(int argc, char **argv) {
       case 'b':
         notMTF = 1;
         break;
-        
+
       //set size of hashtable
       case 'h':
         get_ht_size = optarg;
@@ -294,10 +294,10 @@ int main(int argc, char **argv) {
 
   //no memory leaks plz
   regfree( &regx );
-  //ht_delete( ht );          //frees heads array too
+  bf_delete( bf ) ;          //bloom filter and bf itself
+  //ht_delete( ht );         //frees heads array too
   ll_delete( forbidden );
   ll_delete( translatable );
-  bf_delete( bf );          //bloom filter and bf itself
   //bv_delete( bf->filter );  //bit vector
 
   return 0;
