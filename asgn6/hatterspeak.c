@@ -253,15 +253,16 @@ int main(int argc, char **argv) {
 
     //sum of linked list length / ht length
     double avg_ll = (double)ll_length / ht->length; 
-    printf("\nAverage Linked List Length: %f", (avg_ll) );
+    printf("\nAverage Linked List Length: %f", avg_ll);
 
     //hashtable load is the total size of ht/ !NULL heads in the ht
-    double ht_load = (double) ht->length / ht_count(ht);
-    printf("\nHash Table Load: %f%%", ht_load );
+    double ht_load = (double) ht_count(ht)/ht->length ;
+    printf("\nHash Table Load: %f", (ht_load * 100) );
     
     //number of set bits in bf / length of bf
     double bf_load = (double) set_bits / bfsize;
-    printf("\nBloom Filter Load: %f%%", bf_load );
+    printf("\nBloom Filter Load: %f%%", bf_load * 280);
+
   }
 
   //print the letter
