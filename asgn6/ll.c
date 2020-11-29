@@ -1,5 +1,6 @@
 #include "ll.h" //Linked List
 
+int seeks;
 int links;
 int ll_length;
 
@@ -56,6 +57,7 @@ ListNode *ll_insert(ListNode **head, struct HatterSpeak *gs) {
 
 	//before inserting, look up if node exists
 	if ( ll_lookup (head, gs->oldspeak) ) {
+		seeks++;
 		//printf("\nduplicate found!\n");
 		free(gs->oldspeak);
 		//check if there is a hatter in the struct

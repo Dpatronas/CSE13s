@@ -294,11 +294,14 @@ int main(int argc, char **argv) {
 
   //no memory leaks plz
   regfree( &regx );
-  bf_delete( bf ) ;          //bloom filter and bf itself
+  //ht_delete(ht);
+    
+  //bv_delete( bf->filter );
+  //bf_delete( bf ) ;
+
   //ht_delete( ht );         //frees heads array too
   ll_delete( forbidden );
   ll_delete( translatable );
-  //bv_delete( bf->filter );  //bit vector
 
   return 0;
 }
