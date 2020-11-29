@@ -68,6 +68,7 @@ void read_oldspeak_txt ( BloomFilter *bf, HashTable *ht ) {
 
     //insert the new struct into the hashtable
     ht_insert( ht, new_hs );
+          seeks+=1;
   }
   fclose(os_txt);
 }
@@ -99,6 +100,7 @@ void read_hatterspeak_txt( BloomFilter *bf, HashTable *ht ) {
     bf_insert(bf, old);
     HatterSpeak * new_hs2 = hs_create(old, hatt);
     ht_insert( ht, new_hs2);
+            seeks+=1;
 
   }
   fclose(hs_txt);
@@ -216,6 +218,7 @@ int main(int argc, char **argv) {
           //add struct to a ll of translatable words
           translatable = ll_insert( &translatable, trans);
           //proc the condition for letter printing
+
           trans_letter = 1;
         }
 
@@ -226,6 +229,7 @@ int main(int argc, char **argv) {
           HatterSpeak *forb = hs_create(node->gs->oldspeak, node->gs->hatter);
           //add struct to a ll of forbidden words
           forbidden = ll_insert( &forbidden, forb);
+
           //proc the condition for error printing
           error_letter = 1;
         }
