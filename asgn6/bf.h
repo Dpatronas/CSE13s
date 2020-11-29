@@ -20,13 +20,12 @@ extern int set_bits;
 //
 typedef struct BloomFilter {
 
-//	Provide for three  different  hash functions
-	uint64_t	primary [2];
-	uint64_t	secondary [2];
-	uint64_t	tertiary [2];
-	BitVector *filter;
-}
-BloomFilter;
+  //	Provide for three  different  hash functions
+  uint64_t primary[2];
+  uint64_t secondary[2];
+  uint64_t tertiary[2];
+  BitVector *filter;
+} BloomFilter;
 
 //	Constructor for a BloomFilter.
 // size:		The number of entries in the BloomFilter
@@ -43,7 +42,7 @@ void bf_delete(BloomFilter *bf);
 // bf:			The BloomFilter
 // key:			The key to insert into the BloomFilter (OLDSPEAK)
 //
-void bf_insert(BloomFilter *bf , char *key);
+void bf_insert(BloomFilter *bf, char *key);
 
 //	Probes a BloomFilter to check if a key has been inserted
 // bf:			The BloomFilter
