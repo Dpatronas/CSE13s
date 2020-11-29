@@ -5,10 +5,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-//store words within a certain size
+// store words within a certain size
 #define BLOCK 4096
 
-static char *words[BLOCK] = { NULL }; // Stores a block of words maximum.
+static char *words[BLOCK] = {NULL}; // Stores a block of words maximum.
 
 //
 // Returns the next word that matches the specified regular expression.
@@ -27,7 +27,7 @@ char *next_word(FILE *infile, regex_t *word_regex) {
 
     regmatch_t match;
     uint32_t matches = 0;
-    char buffer[BLOCK] = { 0 };
+    char buffer[BLOCK] = {0};
 
     while (!matches) {
       if (!fgets(buffer, BLOCK, infile)) {
@@ -37,20 +37,20 @@ char *next_word(FILE *infile, regex_t *word_regex) {
       char *cursor = buffer;
 
       for (uint16_t i = 0; i < BLOCK; i += 1) {
-        //dont search the whole block everytime, use the cursor
+        // dont search the whole block everytime, use the cursor
         if (regexec(word_regex, cursor, 1, &match, 0)) {
           break; // Couldn't find a match.
         }
-        //if no match found
+        // if no match found
         if (match.rm_so < 0) {
           break; // No more matches.
         }
-        //start, end, length
+        // start, end, length
         uint32_t start = (uint32_t)match.rm_so;
         uint32_t end = (uint32_t)match.rm_eo;
         uint32_t length = end - start;
 
-        //dynamically allocate
+        // dynamically allocate
         words[i] = (char *)calloc(length + 1, sizeof(char));
         if (!words[i]) {
           perror("calloc");

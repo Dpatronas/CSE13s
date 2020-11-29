@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-//If flag is set, ListNode that are queried (ll_lookup) are moved to the front
+// If flag is set, ListNode that are queried (ll_lookup) are moved to the front
 extern bool move_to_front;
 extern int links;
 extern int ll_length;
@@ -17,16 +17,17 @@ extern int ll_length;
 typedef struct ListNode ListNode;
 
 //	Struct definition of a ListNode
-// gs:		HatterSpeak struct containing oldspeak 
+// gs:		HatterSpeak struct containing oldspeak
 //			         and its HatterSpeak translation
 struct ListNode {
-	HatterSpeak *gs;  //the pointer to data to exist in the Linked List
-	ListNode *next;   //the pointer to next LL node
+  HatterSpeak *gs; // the pointer to data to exist in the Linked List
+  ListNode *next;  // the pointer to next LL node
 };
 
 //	Constructor for a ListNode
-// gs:		HatterSpeak struct containing oldspeak and its HatterSpeak translation
-ListNode *ll_node_create( struct HatterSpeak *gs);
+// gs:		HatterSpeak struct containing oldspeak and its HatterSpeak
+// translation
+ListNode *ll_node_create(struct HatterSpeak *gs);
 
 //	Destructor for a ListNode
 // n:		The ListNode to free
@@ -47,11 +48,11 @@ ListNode *ll_insert(ListNode **head, struct HatterSpeak *gs);
 // key:		The key to search for
 ListNode *ll_lookup(ListNode **head, char *key);
 
-//debugging tools
-//print the linked list starting at head
+// debugging tools
+// print the linked list starting at head
 void ll_print(ListNode **head);
 
-//print a node of the linked list
-void ll_node_print( ListNode **head );
+// print a node of the linked list
+void ll_node_print(ListNode **head);
 
 #endif
