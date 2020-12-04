@@ -1,6 +1,9 @@
 #ifndef __WORD_H__
 #define __WORD_H__
 
+#include "code.h"
+#include <stdio.h> 
+#include <stdlib.h>
 #include <inttypes.h>
 
 //
@@ -9,7 +12,7 @@
 //		len:   Length of the array storing the symbols a Word represents.
 //
 typedef struct Word {
-  uint8_t *syms;			//1 byte char
+  uint8_t *syms;			//1 byte ptr array
   uint32_t len;
 } Word;
 

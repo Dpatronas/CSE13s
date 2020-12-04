@@ -1,12 +1,10 @@
 #include "word.h"
-#include "code.h"
-#include <stdio.h> 
 
 Word *word_create(uint8_t *syms, uint64_t len) {
 
 	//allocate space for word and symbols array
-	Word *w = (Word *)malloc(sizeof (Word));
-	w->syms = (Word *)malloc(sizeof(uint8_t));
+	Word *w = (Word *)malloc(sizeof(Word));
+	w->syms = (uint8_t *)malloc(sizeof(uint8_t));
 
 	//check if they malloc'd ok
 	if ( (!w) || (!w->syms) ) {
@@ -19,10 +17,10 @@ Word *word_create(uint8_t *syms, uint64_t len) {
 	//set symbols
 	for (uint64_t i = 0; i < len; i++) {
 		w->syms[i] = syms[i];
-		//OR memcpy//
-		//memcpy( malloc(strlen(w->sym[i])+1), sym[i]);
 	}
 
+  //return the word created
+  return w;
 }
 
 //make a new word:
@@ -31,7 +29,7 @@ Word *word_create(uint8_t *syms, uint64_t len) {
 //otherwise fill that empty word during append
 Word *word_append_sym(Word *w, uint8_t sym) {
 
-	Word * neww = (Word)malloc(sizeof(Word));
+	Word * neww = (Word *)malloc(sizeof(Word));
 	//check malloc'd
 	if (!neww) {
 		printf("bad malloc of neww word_append)!");
@@ -40,7 +38,7 @@ Word *word_append_sym(Word *w, uint8_t sym) {
 
 	//check if w is empty!
 	if ( w->len == 0 ) {
-		neww->sym[0] = sym;
+		neww->syms[0] = sym;
 		neww->len = 1;
 		return neww;
 	}
@@ -48,13 +46,11 @@ Word *word_append_sym(Word *w, uint8_t sym) {
 	//new word length set
 	neww->len = w->len+1;
 	//set symbols
-	for (uint64_t i = 0; i < len; i++) {
-		w->syms[i] = syms[i];
-		//OR memcpy//
-		//memcpy( malloc(strlen(w->sym[i])+1), sym[i]);
+	for (uint64_t i = 0; i < w->len; i++) {
+		neww->syms[i] = w->syms[i];
 	}
 	//the last element of new word is the appended symbol
-	neww->sym[ neww->len-1 ] = sym;
+	neww->syms[ neww->len-1 ] = sym;
 	//return the newly appended symbol
 	return neww;
 }
@@ -62,8 +58,8 @@ Word *word_append_sym(Word *w, uint8_t sym) {
 void word_delete(Word *w) {
 
 	//free syms in w
-	for (uint64_t i = 0; i < len; i++) {
-		free(w->sym[i]);
+	for (uint8_t i = 0; i < w->len; i++) {
+		free(&w->syms[i]);
 	}
 	//free w
 	free(w);
@@ -86,7 +82,7 @@ WordTable *wt_create(void) {
 
 void wt_reset(WordTable *wt) {
 
-	for ( int i = STARTCODE; i < MAX_CODE; i++) {
+	for ( int i = START_CODE; i < MAX_CODE; i++) {
 		if (wt[i]) {
 			//delete word at index of wordtable
 			word_delete( wt[i]);
@@ -100,7 +96,7 @@ void wt_delete(WordTable *wt) {
 	//must use uin32_t
 	for (uint32_t i = 0; i < MAX_CODE; i++) {
 		if (wt[i]) {
-			word_delete(wt[i])
+			word_delete(wt[i]);
 		}
 	}
 	//free the wt itself

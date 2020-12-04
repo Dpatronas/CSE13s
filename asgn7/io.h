@@ -6,6 +6,9 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
+#define MAGIC 0xbadbeef		//magical number
+
+//stats
 extern uint64_t total_syms;
 extern uint64_t total_bits;
 
