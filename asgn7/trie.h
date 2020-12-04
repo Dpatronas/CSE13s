@@ -62,4 +62,9 @@ void trie_delete(TrieNode *n);
 //
 TrieNode *trie_step(TrieNode *n, uint8_t sym);
 
+//
+//prints the node at the root to show the contents for debugging
+//
+void trie_print( TrieNode *root);
+
 #endif
