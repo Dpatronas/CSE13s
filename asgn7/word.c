@@ -2,24 +2,25 @@
 
 Word *word_create(uint8_t *syms, uint64_t len) {
 
-	//allocate space for word and symbols array
-	Word *w = (Word *)malloc(sizeof(Word));
-	w->syms = (uint8_t *)malloc(sizeof(uint8_t));
-
-	//check if they malloc'd ok
-	if ( (!w) || (!w->syms) ) {
-		printf("bad malloc of word_create or w_syms");
+	Word *w = (Word *)calloc(1, sizeof(Word));
+  if ( w == NULL ) {
+		printf("ERR: w calloc failed");
 		exit(1);
 	}
 
-	//set length
-	w->len = len;
-	//set symbols
-	for (uint64_t i = 0; i < len; i++) {
-		w->syms[i] = syms[i];
-	}
+  if(len) {
+    w->syms = (uint8_t *)calloc(len, sizeof(uint8_t));
+    if ( !w->syms ) {
+      printf("ERR: w->syms calloc failed");
+      exit(1);
+    }
+  }
 
-  //return the word created
+	w->len = len;
+  for (uint64_t i = 0; i < len; i++) {
+    w->syms[i] = syms[i];
+  }
+
   return w;
 }
 
@@ -28,78 +29,65 @@ Word *word_create(uint8_t *syms, uint64_t len) {
 //make sure there is a length to transfer symbols
 //otherwise fill that empty word during append
 Word *word_append_sym(Word *w, uint8_t sym) {
-
-	Word * neww = (Word *)malloc(sizeof(Word));
-	//check malloc'd
-	if (!neww) {
-		printf("bad malloc of neww word_append)!");
+	Word *new_word = (Word *)calloc(1, sizeof(Word));
+  if ( new_word == NULL ) {
+		printf("ERR: new_word calloc failed");
 		exit(1);
 	}
 
-	//check if w is empty!
-	if ( w->len == 0 ) {
-		neww->syms[0] = sym;
-		neww->len = 1;
-		return neww;
-	}
+  new_word->len = w->len + 1;
+  new_word->syms = (uint8_t *)calloc(new_word->len, sizeof(uint8_t));
+  if ( !new_word->syms ) {
+    printf("ERR: new_word->syms calloc failed");
+    exit(1);
+  }
 
-	//new word length set
-	neww->len = w->len+1;
-	//set symbols
-	for (uint64_t i = 0; i < w->len; i++) {
-		neww->syms[i] = w->syms[i];
-	}
-	//the last element of new word is the appended symbol
-	neww->syms[ neww->len-1 ] = sym;
-	//return the newly appended symbol
-	return neww;
+  for (uint64_t i = 0; i < w->len; i++) {
+    new_word->syms[i] = w->syms[i];
+  }
+
+  new_word->syms[w->len] = sym;
+
+  return new_word; 
 }
 
 void word_delete(Word *w) {
-
-	//free syms in w
-	for (uint8_t i = 0; i < w->len; i++) {
-		free(&w->syms[i]);
-	}
-	//free w
+  free(w->syms); w->syms = NULL;
 	free(w);
-
 }
 
 WordTable *wt_create(void) {
 
-	//malloc the wordtable using code.h
-	//callc to initialize WordTable at predefined size
 	WordTable *wt = calloc(MAX_CODE, sizeof(Word));
 	if (!wt) {
-		printf("bad calloc of wt_create!");
+		printf("ERR: neww calloc wt");
 		exit(1);
 	}
 	//initialize wt with an empty word length = 0
-	wt[EMPTY_CODE] = word_create (00000, 0);
+	wt[EMPTY_CODE] = word_create (NULL, 0);
 	return wt;
 }
 
 void wt_reset(WordTable *wt) {
 
-	for ( int i = START_CODE; i < MAX_CODE; i++) {
+	for ( uint64_t i = START_CODE; i < MAX_CODE; i++) {
 		if (wt[i]) {
-			//delete word at index of wordtable
 			word_delete( wt[i]);
+      wt[i] = NULL;
 		}
 	}
 }
 
 void wt_delete(WordTable *wt) {
-
-	//free the words in word table
-	//must use uin32_t
-	for (uint32_t i = 0; i < MAX_CODE; i++) {
-		if (wt[i]) {
-			word_delete(wt[i]);
-		}
-	}
-	//free the wt itself
+	wt_reset(wt);
 	free(wt);
+}
 
+void w_print(Word *w) {
+  printf("\n");
+  for (uint32_t i = 0; i < w->len; i++) {
+    char c = w->syms[i];
+    printf("%c", (c) );
+  }
+  printf("\n");
 }

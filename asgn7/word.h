@@ -77,4 +77,7 @@ void wt_reset(WordTable *wt);
 //
 void wt_delete(WordTable *wt);
 
+//print the word
+void w_print(Word *w);
+
 #endif
