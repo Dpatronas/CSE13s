@@ -1,5 +1,4 @@
-#ifndef __WORD_H__
-#define __WORD_H__
+#pragma once
 
 #include "code.h"
 #include <stdio.h> 
@@ -79,5 +78,3 @@ void wt_delete(WordTable *wt);
 
 //print the word
 void w_print(Word *w);
-
-#endif

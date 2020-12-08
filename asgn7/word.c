@@ -8,12 +8,10 @@ Word *word_create(uint8_t *syms, uint64_t len) {
 		exit(1);
 	}
 
-  if(len) {
-    w->syms = (uint8_t *)calloc(len, sizeof(uint8_t));
-    if ( !w->syms ) {
-      printf("ERR: w->syms calloc failed");
-      exit(1);
-    }
+  w->syms = (uint8_t *)calloc(len, sizeof(uint8_t));
+  if ( !w->syms ) {
+    printf("ERR: w->syms calloc failed");
+    exit(1);
   }
 
 	w->len = len;
@@ -29,6 +27,7 @@ Word *word_create(uint8_t *syms, uint64_t len) {
 //make sure there is a length to transfer symbols
 //otherwise fill that empty word during append
 Word *word_append_sym(Word *w, uint8_t sym) {
+  
 	Word *new_word = (Word *)calloc(1, sizeof(Word));
   if ( new_word == NULL ) {
 		printf("ERR: new_word calloc failed");
