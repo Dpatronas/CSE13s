@@ -1,4 +1,4 @@
-#include "word.h"
+ #include "word.h"
 
 Word *word_create(uint8_t *syms, uint64_t len) {
 
