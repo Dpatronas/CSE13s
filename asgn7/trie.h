@@ -1,5 +1,4 @@
-#ifndef __TRIE_H__
-#define __TRIE_H__
+#pragma once
 
 #include <inttypes.h>
 
@@ -15,8 +14,8 @@ typedef struct TrieNode TrieNode;
 struct TrieNode {
 	//256 pointers (8 bytes) everytime we allocate a trinode
 	//allocates 2048
-  TrieNode *children[ALPHABET];
-  uint16_t code;
+	TrieNode *children[ALPHABET];
+	uint16_t code;
 };
 
 //
@@ -62,9 +61,10 @@ void trie_delete(TrieNode *n);
 //
 TrieNode *trie_step(TrieNode *n, uint8_t sym);
 
+//frees the ptr memory and sets to NULL
+void Free( TrieNode *ptr);
+
 //
 //prints the node at the root to show the contents for debugging
 //
 void trie_print( TrieNode *root);
-
-#endif
