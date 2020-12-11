@@ -1,12 +1,11 @@
-#ifndef __IO_H__
-#define __IO_H__
+#pragma once
 
 #include "word.h"
 
 #include <inttypes.h>
 #include <stdbool.h>
 
-#define MAGIC 0xbadbeef		//magical number
+#define MAGIC 0x8badbeef		//magical number
 
 //stats
 extern uint64_t total_syms;
@@ -78,7 +77,7 @@ void write_header(int outfile, FileHeader *header);
 // sym:     Pointer to memory which stores the read symbol.
 // returns: True if there are symbols to be read, false otherwise.
 //
-bool read_sym(int infile, uint8_t *byte);
+bool read_sym(int infile, uint8_t *sym);
 
 //
 // Buffers a pair. A pair is comprised of a symbol and an index.
@@ -142,4 +141,8 @@ void buffer_word(int outfile, Word *w);
 //
 void flush_words(int outfile);
 
-#endif
+//
+//function to convert bits to byte
+//used for the flush_pairs function
+//
+int to_bytes(int bits);
