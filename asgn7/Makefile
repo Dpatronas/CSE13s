@@ -1,11 +1,13 @@
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -Wpedantic -g
+CFLAGS = -Wall -Wextra -Werror -Wpedantic -lm -g
 
-TARGET_ENC := encode.c
-TARGET_DEC := decode.c
+TARGET_ENC := encode
+TARGET_ENC_SRC := encode.c io.c trie.c word.c 
+OBJ_ENC := $(patsubst %.c,%.o,$(TARGET_ENC_SRC))
 
-OBJ_ENC := $(patsubst %.c,%.o,$(TARGET_ENC))
-OBJ_DEC := $(patsubst %.c,%.o,$(TARGET_DEC))
+TARGET_DEC := decode
+TARGET_DEC_SRC := decode.c io.c trie.c word.c
+OBJ_DEC := $(patsubst %.c,%.o,$(TARGET_DEC_SRC))
 
 all: $(TARGET_ENC) $(TARGET_DEC)
 
@@ -21,11 +23,9 @@ $(TARGET_DEC): $(OBJ_DEC)
 
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-valgrind:
-	valgrind ./$(TARGET_ENC) $(TARGET_DEC)
-
 clean:
 	rm -f $(TARGET_ENC) $(TARGET_DEC) *.o
 
 infer:
 	make clean; infer-capture -- make; infer-analyze -- make
+
