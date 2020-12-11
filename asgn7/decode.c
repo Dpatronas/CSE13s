@@ -2,6 +2,9 @@
 #include "word.h"
 #include "trie.h"
 #include <math.h>
+#include <getopt.h>
+
+#define OPTIONS "vi:o:"
 
 int bit_length (int num) {
 	return (log2(num) + 1);

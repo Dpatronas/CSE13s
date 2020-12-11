@@ -2,6 +2,9 @@
 #include "word.h"
 #include "trie.h"
 #include <math.h>
+#include <getopt.h>
+
+#define OPTIONS "vi:o:"
 
 int bit_length (int num) {
 	return (log2(num) + 1);
@@ -56,7 +59,7 @@ int main (int argc, char ** argv) {
 	TrieNode *prev_node = NULL;
 	uint8_t curr_sym = 0;
 	uint8_t prev_sym = 0;
-	next_code = START_CODE	// START_CODE = 2
+	uint16_t next_code = START_CODE;	// START_CODE = 2
 
 	while (read_sym(infile, &curr_sym)) {
 		
@@ -67,7 +70,7 @@ int main (int argc, char ** argv) {
 			curr_node = next_node;
 		}
 		else {
-			buffer_pair(outfile, curr_node->code, curr_sym, bit_length(next_code))
+			buffer_pair(outfile, curr_node->code, curr_sym, bit_length(next_code));
 			curr_node->children[curr_sym] = trie_node_create(next_code);
 			curr_node = root;
 			next_code ++;
