@@ -1,17 +1,18 @@
 #pragma once
 
 #include "code.h"
-#include <stdio.h> 
-#include <stdlib.h>
 #include <inttypes.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 //
 // Struct definition of a Word.
-//		syms:  A Word holds an array of symbols, stored as bytes in an array.
-//		len:   Length of the array storing the symbols a Word represents.
+//		syms:  A Word holds an array of symbols, stored as bytes in an
+//array. 		len:   Length of the array storing the symbols a Word
+//represents.
 //
 typedef struct Word {
-  uint8_t *syms;			//1 byte ptr array
+  uint8_t *syms; // 1 byte ptr array
   uint32_t len;
 } Word;
 
@@ -76,5 +77,5 @@ void wt_reset(WordTable *wt);
 //
 void wt_delete(WordTable *wt);
 
-//print the word
+// print the word
 void w_print(Word *w);

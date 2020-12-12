@@ -1,15 +1,15 @@
- #include "word.h"
+#include "word.h"
 
 Word *word_create(uint8_t *syms, uint64_t len) {
 
   Word *w = (Word *)calloc(1, sizeof(Word));
-  if ( w == NULL ) {
+  if (w == NULL) {
     printf("ERR: w calloc failed");
     exit(1);
   }
 
   w->syms = (uint8_t *)calloc(len, sizeof(uint8_t));
-  if ( !w->syms ) {
+  if (!w->syms) {
     printf("ERR: w->syms calloc failed");
     exit(1);
   }
@@ -22,21 +22,21 @@ Word *word_create(uint8_t *syms, uint64_t len) {
   return w;
 }
 
-//make a new word:
-//using original word + appended symbol
-//make sure there is a length to transfer symbols
-//otherwise fill that empty word during append
+// make a new word:
+// using original word + appended symbol
+// make sure there is a length to transfer symbols
+// otherwise fill that empty word during append
 Word *word_append_sym(Word *w, uint8_t sym) {
-  
+
   Word *new_word = (Word *)calloc(1, sizeof(Word));
-  if ( new_word == NULL ) {
+  if (new_word == NULL) {
     printf("ERR: new_word calloc failed");
     exit(1);
   }
 
   new_word->len = w->len + 1;
   new_word->syms = (uint8_t *)calloc(new_word->len, sizeof(uint8_t));
-  if ( !new_word->syms ) {
+  if (!new_word->syms) {
     printf("ERR: new_word->syms calloc failed");
     exit(1);
   }
@@ -47,11 +47,12 @@ Word *word_append_sym(Word *w, uint8_t sym) {
 
   new_word->syms[w->len] = sym;
 
-  return new_word; 
+  return new_word;
 }
 
 void word_delete(Word *w) {
-  free(w->syms); w->syms = NULL;
+  free(w->syms);
+  w->syms = NULL;
   free(w);
 }
 
@@ -62,16 +63,16 @@ WordTable *wt_create(void) {
     printf("ERR: neww calloc wt");
     exit(1);
   }
-  //initialize wt with an empty word length = 0
-  wt[EMPTY_CODE] = word_create (NULL, 0);
+  // initialize wt with an empty word length = 0
+  wt[EMPTY_CODE] = word_create(NULL, 0);
   return wt;
 }
 
 void wt_reset(WordTable *wt) {
 
-  for ( uint64_t i = START_CODE; i < MAX_CODE; i++) {
+  for (uint64_t i = START_CODE; i < MAX_CODE; i++) {
     if (wt[i]) {
-      word_delete( wt[i]);
+      word_delete(wt[i]);
       wt[i] = NULL;
     }
   }
@@ -86,7 +87,7 @@ void w_print(Word *w) {
   printf("\n");
   for (uint32_t i = 0; i < w->len; i++) {
     char c = w->syms[i];
-    printf("%c", (c) );
+    printf("%c", (c));
   }
   printf("\n");
 }
