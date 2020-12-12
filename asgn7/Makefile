@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -Wpedantic -lm -g
+CFLAGS = -Wall -Wextra -Werror -Wpedantic -g
 
 TARGET_ENC := encode
 TARGET_ENC_SRC := encode.c io.c trie.c word.c 
@@ -13,11 +13,11 @@ all: $(TARGET_ENC) $(TARGET_DEC)
 
 $(TARGET_ENC): $(OBJ_ENC)
 
-	$(CC) -o $@ ${OBJ_ENC}
+	$(CC) -o $@ ${OBJ_ENC} -lm
 
 $(TARGET_DEC): $(OBJ_DEC)
 
-	$(CC) -o $@ ${OBJ_DEC}
+	$(CC) -o $@ ${OBJ_DEC} -lm
 
 %.o: %.c
 
