@@ -3,11 +3,16 @@
 #include "trie.h"
 #include <math.h>
 #include <getopt.h>
+#include <stdbool.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+
+//extern stats
+uint64_t uncompressed_bits;
+uint64_t compressed_bits;
 
 #define OPTIONS "vi:o:"
 
@@ -18,6 +23,7 @@ int bit_length (int num) {
 int main (int argc, char ** argv) {
 
 	int c = 0;
+	bool stats = false;
 	//default in / out file
 	int infile = STDIN_FILENO;
 	int outfile = STDOUT_FILENO;
@@ -27,6 +33,7 @@ int main (int argc, char ** argv) {
 
 			//display compression statistics
 			case 'v':
+				stats = true;
 				break;
 
 			//specify input other than stdin
@@ -36,7 +43,7 @@ int main (int argc, char ** argv) {
 
 			//specify output other than stout
 			case 'o':
-				outfile = open(optarg, O_WRONLY);
+				outfile = open(optarg, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 				break;
 		}
 	}
@@ -51,9 +58,9 @@ int main (int argc, char ** argv) {
 	}
 
 	//file protection
-	struct stat header_protection;
-	fstat(infile, &header_protection);
-	hd.protection = header_protection.st_mode;
+	struct stat permissions;
+	fstat(infile, &permissions);
+	hd.protection = permissions.st_mode;
 	//outfile emulates infile protection
 	fchmod(outfile, hd.protection);
 	write_header(outfile, &hd);
@@ -72,12 +79,18 @@ int main (int argc, char ** argv) {
 			wt_reset(table);
 			next_code = START_CODE;
 		}
-	  flush_words(outfile);
-  }
+		flush_words(outfile);
+	}
 
-  wt_delete(table);
-  close(infile);
-  close(outfile);
+	wt_delete(table);
+	close(infile);
+	close(outfile);
 
-  return 0;
+		if (stats) {
+		printf("Compressed file size: %lu bytes", compressed_bits);
+		printf("Uncompressed file size: %lu bytes", uncompressed_bits);
+		printf("Compression ratio: %lu%%", (100 * (1-(compressed_bits/uncompressed_bits))) );
+	}
+
+	return 0;
 }
