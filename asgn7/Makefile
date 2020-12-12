@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -Wpedantic -lm -g
+CFLAGS = -Wall -Wextra -Werror -Wpedantic -g
 
 TARGET_ENC := encode
 TARGET_ENC_SRC := encode.c io.c trie.c word.c 
