@@ -4,6 +4,10 @@
 #include <math.h>
 #include <getopt.h>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
 #define OPTIONS "vi:o:"
 
 int bit_length (int num) {
@@ -26,12 +30,12 @@ int main (int argc, char ** argv) {
 
 			//specify input other than stdin
 			case 'i':
-				int infile = open(optarg, O_RDONLY);
+				infile = open(optarg, O_RDONLY);
 				break;
 
 			//specify output other than stout
 			case 'o':
-				int outfile = open(optarg, O_WTONLY);
+				outfile = open(optarg, O_WRONLY);
 				break;
 		}
 	}
