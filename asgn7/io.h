@@ -8,8 +8,8 @@
 #define MAGIC 0x8badbeef		//magical number
 
 //stats
-extern uint64_t total_syms;
-extern uint64_t total_bits;
+extern uint64_t uncompressed_bits;
+extern uint64_t compressed_bits;
 
 //
 // Struct definition of a FileHeader.

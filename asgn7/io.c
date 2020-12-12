@@ -3,11 +3,13 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
 #include <unistd.h>
 
-
 #define BLOCK 4096
+
+//extern stats
+uint64_t uncompressed_bits; //decoded
+uint64_t compressed_bits;   //encoded
 
 //read_sym
 static uint8_t sym_buff[BLOCK]; //buffer to store symbols
@@ -51,98 +53,100 @@ int write_bytes(int outfile, uint8_t *buff, int to_write) {
 	return total;
 }
 
-
+//decode
 void read_header(int infile, FileHeader *header) {
-  //read from either STDIN_FILENO or specified infile
-  read_bytes (infile, (uint8_t*)header, sizeof(FileHeader));
+
+	uncompressed_bits += (8 * sizeof(FileHeader));
+	read_bytes (infile, (uint8_t*)header, sizeof(FileHeader));
 }
 
-
+//encode
 void write_header(int outfile, FileHeader *header) {
-	//write from either STDOUT_FILENO or specified outfile
-  write_bytes (outfile, (uint8_t*)header, sizeof(FileHeader));
+
+	compressed_bits += (8 * sizeof(FileHeader));
+	write_bytes (outfile, (uint8_t*)header, sizeof(FileHeader));
 }
 
-
-//read symbols from an infile
+//encode
 bool read_sym(int infile, uint8_t *sym) {
-  
-  //track the bytes which have been read
-  static int end = 0;
 
-  if (sym_index == 0) {
-    //store the bytes read
-  	end = read_bytes(infile, sym_buff, BLOCK);
-  }
-  //load symbol as the current index of buffer and increment
-  *sym = sym_buff[sym_index++];
+	uncompressed_bits++;
+	//track the bytes which have been read
+	static int end = 0;
 
-  //after loading the symbol check the buffer
-  //if buffer is EOF
-  if (sym_index == BLOCK) {
-  	sym_index = 0;
-  }
-  //potential bytes left to read
-  else if (end == BLOCK) {
-  	return true;
-  }
-  //can no longer read a block
-  else {
-    //check if the index is past the end
-  	if (sym_index == end + 1) {
-  		return false;
-  	}
-  }
+	if (sym_index == 0) {
+		//store the bytes read
+		end = read_bytes(infile, sym_buff, BLOCK);
+	}
+	//load symbol as the current index of buffer and increment
+	*sym = sym_buff[sym_index++];
 
-  // if it is not there is still bytes to read
-  return true;
+	//after loading the symbol check the buffer
+	//if buffer is EOF
+	if (sym_index == BLOCK) {
+		sym_index = 0;
+	}
+	//potential bytes left to read
+	else if (end == BLOCK) {
+		return true;
+	}
+	//can no longer read a block
+	else {
+		//check if the index is past the end
+		if (sym_index == end + 1) {
+			return false;
+		}
+	}
+	// still bytes to read
+	return true;
 }
 
 //encode
 void buffer_pair(int outfile, uint16_t code, uint8_t sym, uint8_t bit_len) {
 
-  //code buffer
-  for ( int i = 0; i < bit_len; i++) {
-    //getbit (LSB) for code
-    if ((code & 1) == 1) {
-      //set bit(bitbuff, bitindex)
-      bitbuff[bitindex >> 3] |= ( 1 << (bitindex % 8));
-    }
-    else {
-      //clr bit(bitbuff, bitindex)
-      bitbuff[bitindex >> 3] &= ~(( 1 << (bitindex % 8)));
-    }
-    bitindex ++;  //increment the buffer
-    code >>= 1;   //take the next code
+	compressed_bits += (bit_len *8);
+	//code buffer
+	for ( int i = 0; i < bit_len; i++) {
+		//getbit (LSB) for code
+		if ((code & 1) == 1) {
+			//set bit(bitbuff, bitindex)
+			bitbuff[bitindex >> 3] |= ( 1 << (bitindex % 8));
+		}
+		else {
+			//clr bit(bitbuff, bitindex)
+			bitbuff[bitindex >> 3] &= ~(( 1 << (bitindex % 8)));
+		}
+		bitindex ++;  //increment the buffer
+		code >>= 1;   //take the next code
 
-    //check if end of buffer
-    if (bitindex == BLOCK * 8) {
-      //write out the buffer and restart
-      flush_pairs(outfile);
-    }
-  }
+		//check if end of buffer
+		if (bitindex == BLOCK * 8) {
+			//write out the buffer and restart
+			flush_pairs(outfile);
+		}
+	}
 
-  //symbol buffer
-  for ( int i = 0; i < 8; i++) {
-    //getbit (LSB) for symbol
-    if ((sym & 1) == 1) {
-      //set bit(symbuff, bitindex)
-      sym_buff[bitindex >> 3] |= ( 1 << (bitindex % 8));
-    }
-    else {
-      //clr bit(symbuff, bitindex)
-      sym_buff[bitindex >> 3] &= ~(( 1 << (bitindex % 8)));
-    }
-    sym_index ++;
-    sym >>= 1;
+	//symbol buffer
+	for ( int i = 0; i < 8; i++) {
+		//getbit (LSB) for symbol
+		if ((sym & 1) == 1) {
+			//set bit(symbuff, bitindex)
+			sym_buff[bitindex >> 3] |= ( 1 << (bitindex % 8));
+		}
+		else {
+			//clr bit(symbuff, bitindex)
+			sym_buff[bitindex >> 3] &= ~(( 1 << (bitindex % 8)));
+		}
+		sym_index ++;
+		sym >>= 1;
 
-    //check if end of buffer
-    if (bitindex == BLOCK * 8) {
-      //write out the buffer and restart
-      write_bytes(outfile, sym_buff, BLOCK);
-      bitindex = 0;
-    }
-  }
+		//check if end of buffer
+		if (bitindex == BLOCK * 8) {
+			//write out the buffer and restart
+			write_bytes(outfile, sym_buff, BLOCK);
+			bitindex = 0;
+		}
+	}
 }
 
 //encode
@@ -150,88 +154,87 @@ void flush_pairs(int outfile) {
 
 	if (bitindex != 0) {
 		write_bytes(outfile, bitbuff, to_bytes(bitindex));
-    bitindex = 0;
+		bitindex = 0;
 	}
-} 
+}
 
-//opposite of buffer pair, decode
+//decode
 bool read_pair(int infile, uint16_t *code, uint8_t *sym, uint8_t bit_len) {
-	
-  *code = 0;
-  //load code: current block
+
+	uncompressed_bits += (bit_len *8);
+	*code = 0;
+	//load code: current block
 	for (int i = 0; i < bit_len; i++) {
 
-    if (bitindex == 0) {
-      read_bytes(infile, bitbuff, BLOCK);
-    }
-    if ( (bitbuff[bitindex] & 1) == 1 ) {
-      //set_bit(*code, i);
-      *code |= ( 1 << (i % 8));
-    }
-    else {
-      //clr_bit(*code, i);
-      *code &= ~(( 1 << (i % 8)));
-    }
+		if (bitindex == 0) {
+			read_bytes(infile, bitbuff, BLOCK);
+		}
+		if ( (bitbuff[bitindex] & 1) == 1 ) {
+			//set_bit(*code, i);
+			*code |= ( 1 << (i % 8));
+		}
+		else {
+			//clr_bit(*code, i);
+			*code &= ~(( 1 << (i % 8)));
+		}
 
-    bitindex++;
-    if ( bitindex == BLOCK * 8) {
-      bitindex = 0;
-    }
-  }
-  return *code != STOP_CODE;
+		bitindex++;
+		if ( bitindex == BLOCK * 8) {
+			bitindex = 0;
+		}
+	}
+	return *code != STOP_CODE;
 
-  //load symbol: current block
-  for (int i = 0; i < 8; i++) {
+	//load symbol: current block
+	for (int i = 0; i < 8; i++) {
 
-    if (bitindex == 0) {
-      read_bytes(infile, bitbuff, BLOCK);
-    }
-    if ( (bitindex & 1 ) == 1 ) {
-      //set_bit(code, i);
-      *sym |= ( 1 << (i % 8));
-    }
-    else {
-      //clr_bit(code, i);
-      *sym &= ~(( 1 << (i % 8)));
-    }
+		if (bitindex == 0) {
+			read_bytes(infile, bitbuff, BLOCK);
+		}
+		if ( (bitindex & 1 ) == 1 ) {
+			//set_bit(code, i);
+			*sym |= ( 1 << (i % 8));
+		}
+		else {
+			//clr_bit(code, i);
+			*sym &= ~(( 1 << (i % 8)));
+		}
 
-    bitindex++;
-    if ( bitindex == BLOCK * 8) {
-      bitindex = 0;
-    }
-  }
+		bitindex++;
+		if ( bitindex == BLOCK * 8) {
+			bitindex = 0;
+		}
+	}
 }
 
-
+//decode
 void buffer_word(int outfile, Word *w) {
 
-  for (uint32_t i = 0; i < w->len; i++) {
-    wordbuffer[word_index] = w->syms[i];
-    word_index++;
-    //if buffer fills up write the bytes to the outfile
-    if (word_index == BLOCK) {
-      flush_words(outfile);
-    }
-  }
+	compressed_bits += (8 * w->len);
+	
+	for (uint32_t i = 0; i < w->len; i++) {
+		wordbuffer[word_index] = w->syms[i];
+		word_index++;
+		//if buffer fills up write the bytes to the outfile
+		if (word_index == BLOCK) {
+			flush_words(outfile);
+		}
+	}	
 }
 
-
-
+//decode
 void flush_words(int outfile) {
 
-  if (word_index != 0) {
-    write_bytes (outfile, wordbuffer, word_index);
-    word_index = 0;
-  }
+	if (word_index != 0) {
+		write_bytes (outfile, wordbuffer, word_index);
+		word_index = 0;
+	}
 }
 
-
 int to_bytes ( int bits ) {
-  int bytes = 0;
 
-  if ((bits % 8) == 0) {
-    bytes = bits/8;
-    return bytes;
-  }
-  return bytes = bits/8 + 1;
+	if ((bits % 8) == 0) {
+		return bits/8;
+	}
+	return bits/8 + 1;
 }
