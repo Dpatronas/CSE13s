@@ -1,5 +1,12 @@
 #include "io.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#include <unistd.h>
+
+
 #define BLOCK 4096
 
 //read_sym
@@ -85,11 +92,10 @@ bool read_sym(int infile, uint8_t *sym) {
   	if (sym_index == end + 1) {
   		return false;
   	}
-  	else  {
-      // if it is not there is still bytes to read
-  		return true;
-  	}
   }
+
+  // if it is not there is still bytes to read
+  return true;
 }
 
 //encode
@@ -199,7 +205,7 @@ bool read_pair(int infile, uint16_t *code, uint8_t *sym, uint8_t bit_len) {
 
 void buffer_word(int outfile, Word *w) {
 
-  for (int i = 0; i < w->len; i++) {
+  for (uint32_t i = 0; i < w->len; i++) {
     wordbuffer[word_index] = w->syms[i];
     word_index++;
     //if buffer fills up write the bytes to the outfile
