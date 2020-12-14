@@ -5,11 +5,11 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
-#define MAGIC 0x8badbeef // magical number
+#define MAGIC 0x8badbeef		//magical number
 
-// stats
-extern uint64_t uncompressed_bits;
-extern uint64_t compressed_bits;
+//stats
+extern uint64_t total_syms;
+extern uint64_t total_bits;
 
 //
 // Struct definition of a FileHeader.
@@ -19,7 +19,7 @@ extern uint64_t compressed_bits;
 //
 typedef struct FileHeader {
   uint32_t magic;
-  uint16_t protection; // use fstat() fchmod()
+  uint16_t protection;	//use fstat() fchmod()
 } FileHeader;
 
 //
@@ -142,7 +142,7 @@ void buffer_word(int outfile, Word *w);
 void flush_words(int outfile);
 
 //
-// function to convert bits to byte
-// used for the flush_pairs function
+//function to convert bits to byte
+//used for the flush_pairs function
 //
 int to_bytes(int bits);
