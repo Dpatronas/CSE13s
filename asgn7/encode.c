@@ -103,13 +103,13 @@ int main (int argc, char ** argv) {
 	trie_delete(root);
 
 	if (stats) {
-		printf("Compressed file size: %llu bits\n", compressed_bits);
-		printf("Uncompressed file size: %llu bits\n", uncompressed_bits);
+		printf("Compressed file size: %lu bits\n", compressed_bits);
+		printf("Uncompressed file size: %lu bits\n", uncompressed_bits);
 
 		long long ratio = 0;
 		ratio = (long long)(100 * (double)uncompressed_bits/compressed_bits);
 
-		printf("Compression ratio: %llu%%\n", ratio);
+		printf("Compression ratio: %lu%%\n", ratio);
 	}
 
 	close(infile);
