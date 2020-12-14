@@ -109,7 +109,7 @@ int main (int argc, char ** argv) {
 		long long ratio = 0;
 		ratio = (long long)(100 * (double)uncompressed_bits/compressed_bits);
 
-		printf("Compression ratio: %lu%%\n", ratio);
+		printf("Compression ratio: %lld%%\n", ratio);
 	}
 
 	close(infile);
