@@ -8,8 +8,8 @@
 //
 // Struct definition of a Word.
 //		syms:  A Word holds an array of symbols, stored as bytes in an
-//array. 		len:   Length of the array storing the symbols a Word
-//represents.
+// array. 		len:   Length of the array storing the symbols a Word
+// represents.
 //
 typedef struct Word {
   uint8_t *syms; // 1 byte ptr array
