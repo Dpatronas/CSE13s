@@ -70,9 +70,11 @@ int main (int argc, char ** argv) {
 	while (read_sym(infile, &curr_sym)) {
 
 		TrieNode * next_node = trie_step(curr_node, curr_sym);
-		
+
+		prev_node = curr_node;
+		prev_sym  = curr_sym;
+
 		if (next_node) {
-			prev_node = curr_node;
 			curr_node = next_node;
 		}
 		else {
@@ -87,8 +89,6 @@ int main (int argc, char ** argv) {
 				curr_node = root;
 				next_code = START_CODE;
 			}
-
-			prev_sym = curr_sym;
 		}
 	}
 
@@ -103,13 +103,13 @@ int main (int argc, char ** argv) {
 	trie_delete(root);
 
 	if (stats) {
-		printf("Compressed file size: %lu bits\n", compressed_bits);
-		printf("Uncompressed file size: %lu bits\n", uncompressed_bits);
+		printf("Compressed file size: %llu bits\n", compressed_bits);
+		printf("Uncompressed file size: %llu bits\n", uncompressed_bits);
 
 		long long ratio = 0;
 		ratio = (long long)(100 * (double)uncompressed_bits/compressed_bits);
 
-		printf("Compression ratio: %lld%%\n", ratio);
+		printf("Compression ratio: %llu%%\n", ratio);
 	}
 
 	close(infile);
