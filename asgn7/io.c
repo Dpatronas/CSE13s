@@ -5,6 +5,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include <string.h>
+
 #define BLOCK 4096
 
 //extern stats
@@ -93,12 +95,17 @@ bool read_sym(int infile, uint8_t *sym) {
 }
 
 //encode
-void buffer_pair(int __attribute__((unused)) outfile, uint16_t code, uint8_t sym, uint8_t bit_len) {
+void buffer_pair(int outfile, uint16_t code, uint8_t sym, uint8_t bit_len) {
 
 	// printf("code: %d, symbol: 0x%.2X\n", code, sym);
 
 	for (int i = 0; i < bit_len; ++i, bitindex++)
 	{
+		if ( BLOCK == (bitindex / 8) ) // optimize: bitindex >> 3
+		{
+			flush_pairs(outfile);
+		}
+
 		uint16_t byte_idx = bitindex / 8;
 		uint8_t normalized_bit_idx = bitindex % 8;
 
@@ -110,6 +117,11 @@ void buffer_pair(int __attribute__((unused)) outfile, uint16_t code, uint8_t sym
 
 	for (int i = 0; i < 8; ++i, bitindex++)
 	{
+		if ( BLOCK == (bitindex / 8) ) // optimize: bitindex >> 3
+		{
+			flush_pairs(outfile);
+		}
+
 		uint16_t byte_idx = bitindex / 8;
 		uint8_t normalized_bit_idx = bitindex % 8;
 
@@ -128,6 +140,8 @@ void flush_pairs(int outfile) {
 	if (bitindex != 0) {
 		total = write_bytes(outfile, bitbuff, to_bytes(bitindex));
 		bitindex = 0;
+
+		memset(bitbuff, 0, sizeof(bitbuff));
 	}
 
 	compressed_bits += (total * 8);
@@ -142,22 +156,22 @@ bool read_pair(int infile, uint16_t *code, uint8_t *sym, uint8_t bit_len) {
 	if (bitindex == 0) {
 		int blen = read_bytes(infile, bitbuff, BLOCK);
 		compressed_bits += (blen * 8);
-		// mdump(bitbuff, blen);
 	}
 
 	uint16_t tcode = 0;
 	for (int i = 0; i < bit_len; ++i, bitindex++)
 	{
+		if ( BLOCK == (bitindex / 8) ) // optimize: bitindex >> 3
+		{
+			int blen = read_bytes(infile, bitbuff, BLOCK);
+			bitindex = 0;
+			compressed_bits += (blen * 8);
+		}
+
 		uint16_t byte_idx = bitindex / 8;
 		uint8_t normalized_bit_idx = bitindex % 8;
 		uint8_t extracted_bit = (bitbuff[byte_idx] >> normalized_bit_idx) & 1;
 		tcode |= (extracted_bit << i);
-
-		// printf("\t> total_bit_idx: %d, byte_idx: %d (val:0x%.2X), norm_bit_idx: %d,", bitindex, 
-		// 																			  byte_idx,
-		// 																			  bitbuff[byte_idx],
-		// 																			  normalized_bit_idx);
-		// printf(" extracted_bit: %d\n", extracted_bit);
 	}
 	*code = tcode;
 
@@ -169,16 +183,17 @@ bool read_pair(int infile, uint16_t *code, uint8_t *sym, uint8_t bit_len) {
 	uint16_t tsym = 0;
 	for (int i = 0; i < 8; ++i, bitindex++)
 	{
+		if ( BLOCK == (bitindex / 8) ) // optimize: bitindex >> 3
+		{
+			int blen = read_bytes(infile, bitbuff, BLOCK);
+			bitindex = 0;
+			compressed_bits += (blen * 8);
+		}
+
 		uint16_t byte_idx = bitindex / 8;
 		uint8_t normalized_bit_idx = bitindex % 8;
 		uint8_t extracted_bit = (bitbuff[byte_idx] >> normalized_bit_idx) & 1;
 		tsym |= (extracted_bit << i);
-
-		// printf("\t> total_bit_idx: %d, byte_idx: %d (val:0x%.2X), norm_bit_idx: %d,", bitindex, 
-		// 																			  byte_idx,
-		// 																			  bitbuff[byte_idx],
-		// 																			  normalized_bit_idx);
-		// printf(" extracted_bit: %d\n", extracted_bit);
 	}
 	*sym = tsym;
 
@@ -195,7 +210,7 @@ void buffer_word(int outfile, Word *w) {
 		if (word_index == BLOCK) {
 			flush_words(outfile);
 		}
-	}	
+	}
 }
 
 //decode

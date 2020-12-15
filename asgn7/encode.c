@@ -71,10 +71,8 @@ int main (int argc, char ** argv) {
 
 		TrieNode * next_node = trie_step(curr_node, curr_sym);
 
-		prev_node = curr_node;
-		prev_sym  = curr_sym;
-
 		if (next_node) {
+			prev_node = curr_node;
 			curr_node = next_node;
 		}
 		else {
@@ -90,6 +88,8 @@ int main (int argc, char ** argv) {
 				next_code = START_CODE;
 			}
 		}
+
+		prev_sym  = curr_sym;
 	}
 
 	if (curr_node != root) {

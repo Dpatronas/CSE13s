@@ -29,6 +29,9 @@ int main (int argc, char* argv[]) {
 	int infile = STDIN_FILENO;
 	int outfile = STDOUT_FILENO;
 
+	// int infile = open("sample.encoded", O_RDONLY);
+	// int outfile = open("sample.decoded", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+
 	while ((c=getopt(argc, argv, OPTIONS)) != -1) {
 		switch (c) {
 
@@ -81,15 +84,14 @@ int main (int argc, char* argv[]) {
 		table[next_code] = word_append_sym(table[curr_code], curr_sym);
 		buffer_word(outfile, table[next_code]);
 
-		next_code ++;
+		next_code++;
 		if (next_code == MAX_CODE) {
 			wt_reset(table);
 			next_code = START_CODE;
 		}
-
-		flush_words(outfile);
 	}
 
+	flush_words(outfile);
 	wt_delete(table);
 
 	if (stats) {
